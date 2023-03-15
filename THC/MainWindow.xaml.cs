@@ -24,6 +24,13 @@ namespace THC
         {
             InitializeComponent();
             clasess.ClassBase.Base = new Entities();
+            cmbUsers.Items.Add("Выберите пользователя");
+            List<TableUser> users = clasess.ClassBase.Base.TableUser.ToList();
+            foreach(TableUser user in users)
+            {
+                cmbUsers.Items.Add(user.UserSurname+ " "+user.UserName+" "+user.UserPatronymic);
+            }
+            cmbUsers.SelectedIndex = 0;
         }
     }
 }
