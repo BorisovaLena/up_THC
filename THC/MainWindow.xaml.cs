@@ -31,6 +31,71 @@ namespace THC
                 cmbUsers.Items.Add(user.UserSurname+ " "+user.UserName+" "+user.UserPatronymic);
             }
             cmbUsers.SelectedIndex = 0;
+            spAbon.Visibility = Visibility.Collapsed;
+            spActive.Visibility = Visibility.Collapsed;
+            spBill.Visibility = Visibility.Collapsed;
+            spCRM.Visibility = Visibility.Collapsed;
+            spPP.Visibility = Visibility.Collapsed;
+            spUO.Visibility = Visibility.Collapsed;
+        }
+
+        private void cmbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            spAbon.Visibility = Visibility.Collapsed;
+            spActive.Visibility = Visibility.Collapsed;
+            spBill.Visibility = Visibility.Collapsed;
+            spCRM.Visibility = Visibility.Collapsed;
+            spPP.Visibility = Visibility.Collapsed;
+            spUO.Visibility = Visibility.Collapsed;
+            if(cmbUsers.SelectedIndex != 0)
+            {
+                TableUser user = clasess.ClassBase.Base.TableUser.FirstOrDefault(x => x.UserID == cmbUsers.SelectedIndex);
+                switch (user.UserRole)
+                {
+                    case 1:
+                        spBill.Visibility = Visibility.Visible;
+                        spCRM.Visibility = Visibility.Visible;
+                        spAbon.Visibility = Visibility.Visible;
+                        break;
+                    case 2:
+                        spCRM.Visibility = Visibility.Visible;
+                        spAbon.Visibility = Visibility.Visible;
+                        break;
+                    case 3:
+                        spCRM.Visibility = Visibility.Visible;
+                        spAbon.Visibility = Visibility.Visible;
+                        spPP.Visibility = Visibility.Visible;
+                        spUO.Visibility = Visibility.Visible;
+                        break;
+                    case 4:
+                        spCRM.Visibility = Visibility.Visible;
+                        spAbon.Visibility = Visibility.Visible;
+                        spPP.Visibility = Visibility.Visible;
+                        spUO.Visibility = Visibility.Visible;
+                        break;
+                    case 5:
+                        spAbon.Visibility = Visibility.Visible;
+                        spBill.Visibility = Visibility.Visible;
+                        spActive.Visibility = Visibility.Visible;
+                        break;
+                    case 6:
+                        spAbon.Visibility = Visibility.Visible;
+                        spActive.Visibility = Visibility.Visible;
+                        spBill.Visibility = Visibility.Visible;
+                        spCRM.Visibility = Visibility.Visible;
+                        spPP.Visibility = Visibility.Visible;
+                        spUO.Visibility = Visibility.Visible;
+                        break;
+                    case 7:
+                        spAbon.Visibility = Visibility.Visible;
+                        spActive.Visibility = Visibility.Visible;
+                        spCRM.Visibility = Visibility.Visible;
+                        spUO.Visibility = Visibility.Visible;
+                        break;
+                    default:
+                        break;
+                }
+            }            
         }
     }
 }

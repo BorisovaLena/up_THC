@@ -210,15 +210,15 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Resource Include="pictures\Лого ТНС.jpg" />
-    <Resource Include="pictures\image.ico" />
-    <Resource Include="pictures\заглушка.jpg" />
-    <Resource Include="pictures\Поддержка пользователей.jpg" />
-    <Resource Include="pictures\Управление обрудованием.jpg" />
+    <Resource Include="pictures\Фото для заглушки.png" />
     <Resource Include="pictures\CRM.png" />
     <Resource Include="pictures\Абоненты.png" />
     <Resource Include="pictures\Активы.png" />
-    <Resource Include="pictures\Биллинг.jpg" />
+    <Resource Include="pictures\Биллинг.png" />
+    <Resource Include="pictures\Поддержка пользователей.png" />
+    <Resource Include="pictures\Управление обрудованием.png" />
+    <Resource Include="pictures\Лого ТНС.jpg" />
+    <Resource Include="pictures\image.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

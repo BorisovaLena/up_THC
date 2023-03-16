@@ -16,7 +16,30 @@
         <Grid Grid.Column="0">
             <StackPanel>
                 <Image Source="pictures/Лого ТНС.jpg"/>
-
+                <StackPanel Name="spAbon">
+                    <Image Source="pictures/Абоненты.png" Width="80"/>
+                    <TextBlock Text="Абоненты"/>
+                </StackPanel>
+                <StackPanel Name="spUO">
+                    <Image Source="pictures/Управление обрудованием.png" Width="60"/>
+                    <TextBlock Text="Управление оборудаванием"/>
+                </StackPanel>
+                <StackPanel Name="spActive">
+                    <Image Source="pictures/Активы.png" Width="50"/>
+                    <TextBlock Text="Активы"/>
+                </StackPanel>
+                <StackPanel Name="spBill">
+                    <Image Source="pictures/Биллинг.png" Width="50"/>
+                    <TextBlock Text="Биллинг"/>
+                </StackPanel>
+                <StackPanel Name="spPP">
+                    <Image Source="pictures/Поддержка пользователей.png" Width="50"/>
+                    <TextBlock Text="Поддержка пользователей"/>
+                </StackPanel>
+                <StackPanel Name="spCRM">
+                    <Image Source="pictures/CRM.png" Width="50"/>
+                    <TextBlock Text="CRM"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
@@ -26,7 +49,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="Абоненты ТНС" FontSize="30"/>
-                <ComboBox Name="cmbUsers" Width="250" Height="40"/>
+                <ComboBox Name="cmbUsers" Width="250" Height="40" SelectionChanged="cmbUsers_SelectionChanged"/>
                 <Rectangle RadiusX="100" RadiusY="100" Height="60" Width="60" Margin="5, 0, 0, 0">
                     <Rectangle.Fill>
                         <ImageBrush x:Name="imUser" Stretch="UniformToFill"/>
