@@ -95,6 +95,8 @@ namespace THC
                     default:
                         break;
                 }
+
+                //imUser.ImageSource = new BitmapImage(new Uri("pictures/" + user.UserPhoto, UriKind.Relative));
             }            
         }
     }
