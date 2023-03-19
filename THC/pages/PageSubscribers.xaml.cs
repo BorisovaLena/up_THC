@@ -53,7 +53,32 @@ namespace THC.pages
 
         private void cmbSearchDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Filter();
+        }
 
+        private void tbSearchSurname_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        public void Filter()
+        {
+            List<TableClient> listFilter = clasess.ClassBase.Base.TableClient.ToList();
+
+            if(!string.IsNullOrWhiteSpace(tbSearchSurname.Text))
+            {
+                listFilter = listFilter.Where(z => z.ClientSurname.ToLower().Contains(tbSearchSurname.Text.ToLower())).ToList();
+            }
+
+            if (!string.IsNullOrWhiteSpace(tbSearchLCh.Text))
+            {
+                listFilter = listFilter.Where(z => z.TableTreaty.TreatyPersonalAccount.ToString().ToLower().Contains(tbSearchLCh.Text.ToLower())).ToList();
+            }
+
+            if(cmbSearchDistrict.SelectedIndex!=0)
+            {
+                listFilter = listFilter.Where(z => z.TableAddress.TableDistrict.DistrictName == cmbSearchDistrict.SelectedItem.ToString()).ToList();
+            }
         }
     }
 }

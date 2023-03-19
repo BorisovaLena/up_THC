@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="5,0">
             <Grid.ColumnDefinitions>
@@ -21,16 +22,16 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <GroupBox Grid.Column="0" Header="Введите фамилию">
-                <TextBox Name="tbSearchSurname"/>
+                <TextBox Name="tbSearchSurname" TextChanged="tbSearchSurname_TextChanged"/>
             </GroupBox>
             <GroupBox Grid.Column="1" Header="Выберите район">
                 <ComboBox Name="cmbSearchDistrict" SelectionChanged="cmbSearchDistrict_SelectionChanged"/>
             </GroupBox>
             <GroupBox Grid.Column="2" Header="Выберите улицу">
-                <ComboBox Name="cmbSearchStreet"/>
+                <ComboBox Name="cmbSearchStreet" SelectionChanged="cmbSearchDistrict_SelectionChanged"/>
             </GroupBox>
             <GroupBox Grid.Column="3" Header="Введите лицевой счет">
-                <TextBox Name="tbSearchLCh" />
+                <TextBox Name="tbSearchLCh" TextChanged="tbSearchSurname_TextChanged"/>
             </GroupBox>
         </Grid>
         <DataGrid Name="dgSubscribers" Grid.Row="1" Margin="10" FontSize="18" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -47,6 +48,10 @@
                 <DataGridTextColumn Header="Услуги" Binding="{Binding  ClientServises}" Width="2*" ElementStyle="{StaticResource WrapText}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <CheckBox Name="cbActive" Content="Активные" Grid.Column="0" VerticalAlignment="Center" Margin="5" FontSize="18"/>
+            <CheckBox Name="cbNotActive" Content="Неактивные" Grid.Column="1" VerticalAlignment="Center" Margin="5" FontSize="18"/>
+        </StackPanel>
         
     </Grid>
 </Page>
