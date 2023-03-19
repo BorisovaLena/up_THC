@@ -14,28 +14,17 @@ namespace THC
     
     public partial class TableAddress
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TableAddress()
-        {
-            this.TableClient = new HashSet<TableClient>();
-            this.TableClient1 = new HashSet<TableClient>();
-        }
-    
         public int AddressID { get; set; }
         public int AddressCountry { get; set; }
         public int AddressCity { get; set; }
         public int AddressStreet { get; set; }
-        public Nullable<int> AddressHouse { get; set; }
-        public string AddressApartment { get; set; }
+        public string AddressHouse { get; set; }
+        public Nullable<int> AddressApartament { get; set; }
         public Nullable<int> AddressDistrict { get; set; }
     
         public virtual TableCity TableCity { get; set; }
         public virtual TableCountry TableCountry { get; set; }
         public virtual TableDistrict TableDistrict { get; set; }
         public virtual TableStreet TableStreet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TableClient> TableClient { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TableClient> TableClient1 { get; set; }
     }
 }

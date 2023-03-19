@@ -6,15 +6,13 @@
         xmlns:local="clr-namespace:THC"
         mc:Ignorable="d"
         Icon="pictures/image.ico"
-        MinHeight="650" MinWidth="900"
-        Title="MainWindow" Height="700" Width="1000">
+        MinHeight="700" MinWidth="1200"
+        Title="MainWindow" Height="700" Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
-
         </Grid.ColumnDefinitions>
-
         <Grid Grid.Column="0">
             <StackPanel>
                 <Image Source="pictures/Лого ТНС.jpg" Width="100"/>

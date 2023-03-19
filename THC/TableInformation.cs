@@ -16,6 +16,7 @@ namespace THC
     {
         public int InformationID { get; set; }
         public int InformationRole { get; set; }
+        public System.DateTime InformationDate { get; set; }
         public string InformationText { get; set; }
     
         public virtual Table_Roles Table_Roles { get; set; }

@@ -9,8 +9,30 @@
       Title="PageSubscribers">
 
     <Grid>
-        <StackPanel>
-            <TextBlock Text="pspspsp"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Header="Введите фамилию">
+                <TextBox Name="tbSearchSurname"/>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="Выберите район">
+                <ComboBox Name="cmbSearchDistrict" SelectionChanged="cmbSearchDistrict_SelectionChanged"/>
+            </GroupBox>
+            <GroupBox Grid.Column="2" Header="Выберите улицу">
+                <ComboBox Name="cmbSearchStreet"/>
+            </GroupBox>
+            <GroupBox Grid.Column="3" Header="Введите лицевой счет">
+                <TextBox Name="tbSearchLCh" />
+            </GroupBox>
+        </Grid>
+        
     </Grid>
 </Page>

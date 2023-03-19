@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище CRM1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище CRM1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Table_Employees">
           <Key>
             <PropertyRef Name="ID_Employee" />
@@ -33,8 +33,8 @@
           <Property Name="AddressCountry" Type="int" Nullable="false" />
           <Property Name="AddressCity" Type="int" Nullable="false" />
           <Property Name="AddressStreet" Type="int" Nullable="false" />
-          <Property Name="AddressHouse" Type="int" />
-          <Property Name="AddressApartment" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressHouse" Type="nchar" MaxLength="10" />
+          <Property Name="AddressApartament" Type="int" />
           <Property Name="AddressDistrict" Type="int" />
         </EntityType>
         <EntityType Name="TableApplication">
@@ -123,6 +123,7 @@
           </Key>
           <Property Name="InformationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InformationRole" Type="int" Nullable="false" />
+          <Property Name="InformationDate" Type="date" Nullable="false" />
           <Property Name="InformationText" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="TablePassport">
@@ -354,30 +355,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TableClient_TableAddress">
-          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="1" />
-          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TableAddress">
-              <PropertyRef Name="AddressID" />
-            </Principal>
-            <Dependent Role="TableClient">
-              <PropertyRef Name="ClientAddressRegistration" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TableClient_TableAddress1">
-          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="1" />
-          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TableAddress">
-              <PropertyRef Name="AddressID" />
-            </Principal>
-            <Dependent Role="TableClient">
-              <PropertyRef Name="ClientAddressAccommodation" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TableClient_TableEquipment">
           <End Role="TableEquipment" Type="Self.TableEquipment" Multiplicity="1" />
           <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
@@ -555,14 +532,6 @@
             <End Role="TableServiceVid" EntitySet="TableServiceVid" />
             <End Role="TableApplication" EntitySet="TableApplication" />
           </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableAddress" Association="Self.FK_TableClient_TableAddress">
-            <End Role="TableAddress" EntitySet="TableAddress" />
-            <End Role="TableClient" EntitySet="TableClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableAddress1" Association="Self.FK_TableClient_TableAddress1">
-            <End Role="TableAddress" EntitySet="TableAddress" />
-            <End Role="TableClient" EntitySet="TableClient" />
-          </AssociationSet>
           <AssociationSet Name="FK_TableClient_TableEquipment" Association="Self.FK_TableClient_TableEquipment">
             <End Role="TableEquipment" EntitySet="TableEquipment" />
             <End Role="TableClient" EntitySet="TableClient" />
@@ -600,34 +569,139 @@
             <End Role="TableUser" EntitySet="TableUser" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRM1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Table_Employees" EntityType="CRM1Model.Table_Employees" />
+          <EntitySet Name="Table_Roles" EntityType="CRM1Model.Table_Roles" />
+          <EntitySet Name="TableAddress" EntityType="CRM1Model.TableAddress" />
+          <EntitySet Name="TableApplication" EntityType="CRM1Model.TableApplication" />
+          <EntitySet Name="TableBuildingType" EntityType="CRM1Model.TableBuildingType" />
+          <EntitySet Name="TableCity" EntityType="CRM1Model.TableCity" />
+          <EntitySet Name="TableClient" EntityType="CRM1Model.TableClient" />
+          <EntitySet Name="TableCountry" EntityType="CRM1Model.TableCountry" />
+          <EntitySet Name="TableDistrict" EntityType="CRM1Model.TableDistrict" />
+          <EntitySet Name="TableEquipment" EntityType="CRM1Model.TableEquipment" />
+          <EntitySet Name="TableGender" EntityType="CRM1Model.TableGender" />
+          <EntitySet Name="TableInformation" EntityType="CRM1Model.TableInformation" />
+          <EntitySet Name="TablePassport" EntityType="CRM1Model.TablePassport" />
+          <EntitySet Name="TableProblem" EntityType="CRM1Model.TableProblem" />
+          <EntitySet Name="TableProblemType" EntityType="CRM1Model.TableProblemType" />
+          <EntitySet Name="TableService" EntityType="CRM1Model.TableService" />
+          <EntitySet Name="TableServiceStatus" EntityType="CRM1Model.TableServiceStatus" />
+          <EntitySet Name="TableServiceTreaty" EntityType="CRM1Model.TableServiceTreaty" />
+          <EntitySet Name="TableServiceType" EntityType="CRM1Model.TableServiceType" />
+          <EntitySet Name="TableServiceVid" EntityType="CRM1Model.TableServiceVid" />
+          <EntitySet Name="TableStreet" EntityType="CRM1Model.TableStreet" />
+          <EntitySet Name="TableTreaty" EntityType="CRM1Model.TableTreaty" />
+          <EntitySet Name="TableTypeTreaty" EntityType="CRM1Model.TableTypeTreaty" />
+          <EntitySet Name="TableUser" EntityType="CRM1Model.TableUser" />
+          <AssociationSet Name="FK_Table_Employees_Table_Roles" Association="CRM1Model.FK_Table_Employees_Table_Roles">
+            <End Role="Table_Roles" EntitySet="Table_Roles" />
+            <End Role="Table_Employees" EntitySet="Table_Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableInformation_Table_Roles" Association="CRM1Model.FK_TableInformation_Table_Roles">
+            <End Role="Table_Roles" EntitySet="Table_Roles" />
+            <End Role="TableInformation" EntitySet="TableInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableUser_Table_Roles" Association="CRM1Model.FK_TableUser_Table_Roles">
+            <End Role="Table_Roles" EntitySet="Table_Roles" />
+            <End Role="TableUser" EntitySet="TableUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableAddress_TableCity" Association="CRM1Model.FK_TableAddress_TableCity">
+            <End Role="TableCity" EntitySet="TableCity" />
+            <End Role="TableAddress" EntitySet="TableAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableAddress_TableCountry" Association="CRM1Model.FK_TableAddress_TableCountry">
+            <End Role="TableCountry" EntitySet="TableCountry" />
+            <End Role="TableAddress" EntitySet="TableAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableAddress_TableDistrict" Association="CRM1Model.FK_TableAddress_TableDistrict">
+            <End Role="TableDistrict" EntitySet="TableDistrict" />
+            <End Role="TableAddress" EntitySet="TableAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableAddress_TableStreet" Association="CRM1Model.FK_TableAddress_TableStreet">
+            <End Role="TableStreet" EntitySet="TableStreet" />
+            <End Role="TableAddress" EntitySet="TableAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableApplication_ServiceType" Association="CRM1Model.FK_TableApplication_ServiceType">
+            <End Role="TableServiceType" EntitySet="TableServiceType" />
+            <End Role="TableApplication" EntitySet="TableApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableApplication_TableProblem" Association="CRM1Model.FK_TableApplication_TableProblem">
+            <End Role="TableProblem" EntitySet="TableProblem" />
+            <End Role="TableApplication" EntitySet="TableApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableApplication_TableProblemType" Association="CRM1Model.FK_TableApplication_TableProblemType">
+            <End Role="TableProblemType" EntitySet="TableProblemType" />
+            <End Role="TableApplication" EntitySet="TableApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableApplication_TableService" Association="CRM1Model.FK_TableApplication_TableService">
+            <End Role="TableService" EntitySet="TableService" />
+            <End Role="TableApplication" EntitySet="TableApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableApplication_TableServiceStatus" Association="CRM1Model.FK_TableApplication_TableServiceStatus">
+            <End Role="TableServiceStatus" EntitySet="TableServiceStatus" />
+            <End Role="TableApplication" EntitySet="TableApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableApplication_TableServiceVid" Association="CRM1Model.FK_TableApplication_TableServiceVid">
+            <End Role="TableServiceVid" EntitySet="TableServiceVid" />
+            <End Role="TableApplication" EntitySet="TableApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableDistrict_TableBuildingType" Association="CRM1Model.FK_TableDistrict_TableBuildingType">
+            <End Role="TableBuildingType" EntitySet="TableBuildingType" />
+            <End Role="TableDistrict" EntitySet="TableDistrict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableClient_TableEquipment" Association="CRM1Model.FK_TableClient_TableEquipment">
+            <End Role="TableEquipment" EntitySet="TableEquipment" />
+            <End Role="TableClient" EntitySet="TableClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableClient_TableGender" Association="CRM1Model.FK_TableClient_TableGender">
+            <End Role="TableGender" EntitySet="TableGender" />
+            <End Role="TableClient" EntitySet="TableClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableClient_TablePassport" Association="CRM1Model.FK_TableClient_TablePassport">
+            <End Role="TablePassport" EntitySet="TablePassport" />
+            <End Role="TableClient" EntitySet="TableClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableClient_TableTreaty" Association="CRM1Model.FK_TableClient_TableTreaty">
+            <End Role="TableTreaty" EntitySet="TableTreaty" />
+            <End Role="TableClient" EntitySet="TableClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableServiceTreaty_TableTreaty" Association="CRM1Model.FK_TableServiceTreaty_TableTreaty">
+            <End Role="TableTreaty" EntitySet="TableTreaty" />
+            <End Role="TableServiceTreaty" EntitySet="TableServiceTreaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableTreaty_TableTypeTreaty" Association="CRM1Model.FK_TableTreaty_TableTypeTreaty">
+            <End Role="TableTypeTreaty" EntitySet="TableTypeTreaty" />
+            <End Role="TableTreaty" EntitySet="TableTreaty" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Table_Employees">
           <Key>
             <PropertyRef Name="ID_Employee" />
           </Key>
           <Property Name="ID_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Number" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
           <Property Name="Password" Type="Int32" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID_Role" Type="Int32" Nullable="false" />
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Table_Roles" Relationship="Self.FK_Table_Employees_Table_Roles" FromRole="Table_Employees" ToRole="Table_Roles" />
+          <NavigationProperty Name="Table_Roles" Relationship="CRM1Model.FK_Table_Employees_Table_Roles" FromRole="Table_Employees" ToRole="Table_Roles" />
         </EntityType>
         <EntityType Name="Table_Roles">
           <Key>
             <PropertyRef Name="ID_Role" />
           </Key>
           <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Table_Employees" Relationship="Self.FK_Table_Employees_Table_Roles" FromRole="Table_Roles" ToRole="Table_Employees" />
-          <NavigationProperty Name="TableInformation" Relationship="Self.FK_TableInformation_Table_Roles" FromRole="Table_Roles" ToRole="TableInformation" />
-          <NavigationProperty Name="TableUser" Relationship="Self.FK_TableUser_Table_Roles" FromRole="Table_Roles" ToRole="TableUser" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Employees" Relationship="CRM1Model.FK_Table_Employees_Table_Roles" FromRole="Table_Roles" ToRole="Table_Employees" />
+          <NavigationProperty Name="TableInformation" Relationship="CRM1Model.FK_TableInformation_Table_Roles" FromRole="Table_Roles" ToRole="TableInformation" />
+          <NavigationProperty Name="TableUser" Relationship="CRM1Model.FK_TableUser_Table_Roles" FromRole="Table_Roles" ToRole="TableUser" />
         </EntityType>
         <EntityType Name="TableAddress">
           <Key>
@@ -637,21 +711,19 @@
           <Property Name="AddressCountry" Type="Int32" Nullable="false" />
           <Property Name="AddressCity" Type="Int32" Nullable="false" />
           <Property Name="AddressStreet" Type="Int32" Nullable="false" />
-          <Property Name="AddressHouse" Type="Int32" />
-          <Property Name="AddressApartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressHouse" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AddressApartament" Type="Int32" />
           <Property Name="AddressDistrict" Type="Int32" />
-          <NavigationProperty Name="TableCity" Relationship="Self.FK_TableAddress_TableCity" FromRole="TableAddress" ToRole="TableCity" />
-          <NavigationProperty Name="TableCountry" Relationship="Self.FK_TableAddress_TableCountry" FromRole="TableAddress" ToRole="TableCountry" />
-          <NavigationProperty Name="TableDistrict" Relationship="Self.FK_TableAddress_TableDistrict" FromRole="TableAddress" ToRole="TableDistrict" />
-          <NavigationProperty Name="TableStreet" Relationship="Self.FK_TableAddress_TableStreet" FromRole="TableAddress" ToRole="TableStreet" />
-          <NavigationProperty Name="TableClient" Relationship="Self.FK_TableClient_TableAddress" FromRole="TableAddress" ToRole="TableClient" />
-          <NavigationProperty Name="TableClient1" Relationship="Self.FK_TableClient_TableAddress1" FromRole="TableAddress" ToRole="TableClient" />
+          <NavigationProperty Name="TableCity" Relationship="CRM1Model.FK_TableAddress_TableCity" FromRole="TableAddress" ToRole="TableCity" />
+          <NavigationProperty Name="TableCountry" Relationship="CRM1Model.FK_TableAddress_TableCountry" FromRole="TableAddress" ToRole="TableCountry" />
+          <NavigationProperty Name="TableDistrict" Relationship="CRM1Model.FK_TableAddress_TableDistrict" FromRole="TableAddress" ToRole="TableDistrict" />
+          <NavigationProperty Name="TableStreet" Relationship="CRM1Model.FK_TableAddress_TableStreet" FromRole="TableAddress" ToRole="TableStreet" />
         </EntityType>
         <EntityType Name="TableApplication">
           <Key>
             <PropertyRef Name="ApplicationNumber" />
           </Key>
-          <Property Name="ApplicationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ApplicationPersonalAccount" Type="Int32" Nullable="false" />
           <Property Name="ApplicationService" Type="Int32" Nullable="false" />
@@ -662,81 +734,79 @@
           <Property Name="ApplicationProblem" Type="Int32" />
           <Property Name="ApplicationDateClosing" Type="DateTime" Precision="3" />
           <Property Name="ApplicationTypeProblem" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TableServiceType" Relationship="Self.FK_TableApplication_ServiceType" FromRole="TableApplication" ToRole="TableServiceType" />
-          <NavigationProperty Name="TableProblem" Relationship="Self.FK_TableApplication_TableProblem" FromRole="TableApplication" ToRole="TableProblem" />
-          <NavigationProperty Name="TableProblemType" Relationship="Self.FK_TableApplication_TableProblemType" FromRole="TableApplication" ToRole="TableProblemType" />
-          <NavigationProperty Name="TableService" Relationship="Self.FK_TableApplication_TableService" FromRole="TableApplication" ToRole="TableService" />
-          <NavigationProperty Name="TableServiceStatus" Relationship="Self.FK_TableApplication_TableServiceStatus" FromRole="TableApplication" ToRole="TableServiceStatus" />
-          <NavigationProperty Name="TableServiceVid" Relationship="Self.FK_TableApplication_TableServiceVid" FromRole="TableApplication" ToRole="TableServiceVid" />
+          <NavigationProperty Name="TableServiceType" Relationship="CRM1Model.FK_TableApplication_ServiceType" FromRole="TableApplication" ToRole="TableServiceType" />
+          <NavigationProperty Name="TableProblem" Relationship="CRM1Model.FK_TableApplication_TableProblem" FromRole="TableApplication" ToRole="TableProblem" />
+          <NavigationProperty Name="TableProblemType" Relationship="CRM1Model.FK_TableApplication_TableProblemType" FromRole="TableApplication" ToRole="TableProblemType" />
+          <NavigationProperty Name="TableService" Relationship="CRM1Model.FK_TableApplication_TableService" FromRole="TableApplication" ToRole="TableService" />
+          <NavigationProperty Name="TableServiceStatus" Relationship="CRM1Model.FK_TableApplication_TableServiceStatus" FromRole="TableApplication" ToRole="TableServiceStatus" />
+          <NavigationProperty Name="TableServiceVid" Relationship="CRM1Model.FK_TableApplication_TableServiceVid" FromRole="TableApplication" ToRole="TableServiceVid" />
         </EntityType>
         <EntityType Name="TableBuildingType">
           <Key>
             <PropertyRef Name="BuildingTypeID" />
           </Key>
           <Property Name="BuildingTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BuildingTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableDistrict" Relationship="Self.FK_TableDistrict_TableBuildingType" FromRole="TableBuildingType" ToRole="TableDistrict" />
+          <Property Name="BuildingTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableDistrict" Relationship="CRM1Model.FK_TableDistrict_TableBuildingType" FromRole="TableBuildingType" ToRole="TableDistrict" />
         </EntityType>
         <EntityType Name="TableCity">
           <Key>
             <PropertyRef Name="CityID" />
           </Key>
           <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableAddress" Relationship="Self.FK_TableAddress_TableCity" FromRole="TableCity" ToRole="TableAddress" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableAddress" Relationship="CRM1Model.FK_TableAddress_TableCity" FromRole="TableCity" ToRole="TableAddress" />
         </EntityType>
         <EntityType Name="TableClient">
           <Key>
             <PropertyRef Name="ClientID" />
           </Key>
-          <Property Name="ClientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClientSurname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientSurname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClientPatronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClientGenre" Type="Int32" Nullable="false" />
           <Property Name="ClientBirthday" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ClientNumberPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClientEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientNumberPhone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientEmail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClientAddressRegistration" Type="Int32" Nullable="false" />
           <Property Name="ClientAddressAccommodation" Type="Int32" Nullable="false" />
-          <Property Name="ClientTreaty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientTreaty" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ClientEquipment" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TableAddress" Relationship="Self.FK_TableClient_TableAddress" FromRole="TableClient" ToRole="TableAddress" />
-          <NavigationProperty Name="TableAddress1" Relationship="Self.FK_TableClient_TableAddress1" FromRole="TableClient" ToRole="TableAddress" />
-          <NavigationProperty Name="TableEquipment" Relationship="Self.FK_TableClient_TableEquipment" FromRole="TableClient" ToRole="TableEquipment" />
-          <NavigationProperty Name="TableGender" Relationship="Self.FK_TableClient_TableGender" FromRole="TableClient" ToRole="TableGender" />
-          <NavigationProperty Name="TablePassport" Relationship="Self.FK_TableClient_TablePassport" FromRole="TableClient" ToRole="TablePassport" />
-          <NavigationProperty Name="TableTreaty" Relationship="Self.FK_TableClient_TableTreaty" FromRole="TableClient" ToRole="TableTreaty" />
+          <NavigationProperty Name="TableEquipment" Relationship="CRM1Model.FK_TableClient_TableEquipment" FromRole="TableClient" ToRole="TableEquipment" />
+          <NavigationProperty Name="TableGender" Relationship="CRM1Model.FK_TableClient_TableGender" FromRole="TableClient" ToRole="TableGender" />
+          <NavigationProperty Name="TablePassport" Relationship="CRM1Model.FK_TableClient_TablePassport" FromRole="TableClient" ToRole="TablePassport" />
+          <NavigationProperty Name="TableTreaty" Relationship="CRM1Model.FK_TableClient_TableTreaty" FromRole="TableClient" ToRole="TableTreaty" />
         </EntityType>
         <EntityType Name="TableCountry">
           <Key>
             <PropertyRef Name="CountryID" />
           </Key>
           <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableAddress" Relationship="Self.FK_TableAddress_TableCountry" FromRole="TableCountry" ToRole="TableAddress" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableAddress" Relationship="CRM1Model.FK_TableAddress_TableCountry" FromRole="TableCountry" ToRole="TableAddress" />
         </EntityType>
         <EntityType Name="TableDistrict">
           <Key>
             <PropertyRef Name="DistrictID" />
           </Key>
           <Property Name="DistrictID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DistrictName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DistrictName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DistrictSquare" Type="Double" Nullable="false" />
           <Property Name="DistrictPopulation" Type="Int32" Nullable="false" />
           <Property Name="DistrictMetro" Type="Int32" Nullable="false" />
           <Property Name="DistrictBuildingType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TableAddress" Relationship="Self.FK_TableAddress_TableDistrict" FromRole="TableDistrict" ToRole="TableAddress" />
-          <NavigationProperty Name="TableBuildingType" Relationship="Self.FK_TableDistrict_TableBuildingType" FromRole="TableDistrict" ToRole="TableBuildingType" />
+          <NavigationProperty Name="TableAddress" Relationship="CRM1Model.FK_TableAddress_TableDistrict" FromRole="TableDistrict" ToRole="TableAddress" />
+          <NavigationProperty Name="TableBuildingType" Relationship="CRM1Model.FK_TableDistrict_TableBuildingType" FromRole="TableDistrict" ToRole="TableBuildingType" />
         </EntityType>
         <EntityType Name="TableEquipment">
           <Key>
             <PropertyRef Name="EquipmentID" />
           </Key>
           <Property Name="EquipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EquipmentSerialNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EquipmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableClient" Relationship="Self.FK_TableClient_TableEquipment" FromRole="TableEquipment" ToRole="TableClient" />
+          <Property Name="EquipmentSerialNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EquipmentName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableClient" Relationship="CRM1Model.FK_TableClient_TableEquipment" FromRole="TableEquipment" ToRole="TableClient" />
         </EntityType>
         <EntityType Name="TableGender">
           <Key>
@@ -744,7 +814,7 @@
           </Key>
           <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GenderName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="TableClient" Relationship="Self.FK_TableClient_TableGender" FromRole="TableGender" ToRole="TableClient" />
+          <NavigationProperty Name="TableClient" Relationship="CRM1Model.FK_TableClient_TableGender" FromRole="TableGender" ToRole="TableClient" />
         </EntityType>
         <EntityType Name="TableInformation">
           <Key>
@@ -752,52 +822,53 @@
           </Key>
           <Property Name="InformationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InformationRole" Type="Int32" Nullable="false" />
-          <Property Name="InformationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Table_Roles" Relationship="Self.FK_TableInformation_Table_Roles" FromRole="TableInformation" ToRole="Table_Roles" />
+          <Property Name="InformationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InformationText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Roles" Relationship="CRM1Model.FK_TableInformation_Table_Roles" FromRole="TableInformation" ToRole="Table_Roles" />
         </EntityType>
         <EntityType Name="TablePassport">
           <Key>
             <PropertyRef Name="ClientID" />
           </Key>
-          <Property Name="ClientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PassportSeries" Type="Int32" Nullable="false" />
           <Property Name="PassportNumber" Type="Int32" Nullable="false" />
-          <Property Name="PassportCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PassportIssued" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassportIssued" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PassportDateIssued" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="TableClient" Relationship="Self.FK_TableClient_TablePassport" FromRole="TablePassport" ToRole="TableClient" />
+          <NavigationProperty Name="TableClient" Relationship="CRM1Model.FK_TableClient_TablePassport" FromRole="TablePassport" ToRole="TableClient" />
         </EntityType>
         <EntityType Name="TableProblem">
           <Key>
             <PropertyRef Name="ProblemID" />
           </Key>
           <Property Name="ProblemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProblemText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableApplication" Relationship="Self.FK_TableApplication_TableProblem" FromRole="TableProblem" ToRole="TableApplication" />
+          <Property Name="ProblemText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableApplication" Relationship="CRM1Model.FK_TableApplication_TableProblem" FromRole="TableProblem" ToRole="TableApplication" />
         </EntityType>
         <EntityType Name="TableProblemType">
           <Key>
             <PropertyRef Name="ProblemTypeID" />
           </Key>
           <Property Name="ProblemTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProblemTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableApplication" Relationship="Self.FK_TableApplication_TableProblemType" FromRole="TableProblemType" ToRole="TableApplication" />
+          <Property Name="ProblemTypeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableApplication" Relationship="CRM1Model.FK_TableApplication_TableProblemType" FromRole="TableProblemType" ToRole="TableApplication" />
         </EntityType>
         <EntityType Name="TableService">
           <Key>
             <PropertyRef Name="ServiceID" />
           </Key>
           <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableApplication" Relationship="Self.FK_TableApplication_TableService" FromRole="TableService" ToRole="TableApplication" />
+          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableApplication" Relationship="CRM1Model.FK_TableApplication_TableService" FromRole="TableService" ToRole="TableApplication" />
         </EntityType>
         <EntityType Name="TableServiceStatus">
           <Key>
             <PropertyRef Name="ServiceStatusID" />
           </Key>
           <Property Name="ServiceStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceStatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableApplication" Relationship="Self.FK_TableApplication_TableServiceStatus" FromRole="TableServiceStatus" ToRole="TableApplication" />
+          <Property Name="ServiceStatusName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableApplication" Relationship="CRM1Model.FK_TableApplication_TableServiceStatus" FromRole="TableServiceStatus" ToRole="TableApplication" />
         </EntityType>
         <EntityType Name="TableServiceTreaty">
           <Key>
@@ -805,70 +876,70 @@
           </Key>
           <Property Name="ServiceTreatyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceTreatyServiceID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceTreatyTreatyID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableTreaty" Relationship="Self.FK_TableServiceTreaty_TableTreaty" FromRole="TableServiceTreaty" ToRole="TableTreaty" />
+          <Property Name="ServiceTreatyTreatyID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableTreaty" Relationship="CRM1Model.FK_TableServiceTreaty_TableTreaty" FromRole="TableServiceTreaty" ToRole="TableTreaty" />
         </EntityType>
         <EntityType Name="TableServiceType">
           <Key>
             <PropertyRef Name="ServiceTypeID" />
           </Key>
           <Property Name="ServiceTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableApplication" Relationship="Self.FK_TableApplication_ServiceType" FromRole="TableServiceType" ToRole="TableApplication" />
+          <Property Name="ServiceTypeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableApplication" Relationship="CRM1Model.FK_TableApplication_ServiceType" FromRole="TableServiceType" ToRole="TableApplication" />
         </EntityType>
         <EntityType Name="TableServiceVid">
           <Key>
             <PropertyRef Name="ServiceVidID" />
           </Key>
           <Property Name="ServiceVidID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceVidName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableApplication" Relationship="Self.FK_TableApplication_TableServiceVid" FromRole="TableServiceVid" ToRole="TableApplication" />
+          <Property Name="ServiceVidName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableApplication" Relationship="CRM1Model.FK_TableApplication_TableServiceVid" FromRole="TableServiceVid" ToRole="TableApplication" />
         </EntityType>
         <EntityType Name="TableStreet">
           <Key>
             <PropertyRef Name="StreetID" />
           </Key>
           <Property Name="StreetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StreetName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableAddress" Relationship="Self.FK_TableAddress_TableStreet" FromRole="TableStreet" ToRole="TableAddress" />
+          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableAddress" Relationship="CRM1Model.FK_TableAddress_TableStreet" FromRole="TableStreet" ToRole="TableAddress" />
         </EntityType>
         <EntityType Name="TableTreaty">
           <Key>
             <PropertyRef Name="TreatyNumber" />
           </Key>
-          <Property Name="TreatyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TreatyNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TreatyDateСonclusion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TreatyType" Type="Int32" Nullable="false" />
           <Property Name="TreatyReasonForTermination" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TreatyTerminationDate" Type="DateTime" Precision="3" />
           <Property Name="TreatyPersonalAccount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TableClient" Relationship="Self.FK_TableClient_TableTreaty" FromRole="TableTreaty" ToRole="TableClient" />
-          <NavigationProperty Name="TableServiceTreaty" Relationship="Self.FK_TableServiceTreaty_TableTreaty" FromRole="TableTreaty" ToRole="TableServiceTreaty" />
-          <NavigationProperty Name="TableTypeTreaty" Relationship="Self.FK_TableTreaty_TableTypeTreaty" FromRole="TableTreaty" ToRole="TableTypeTreaty" />
+          <NavigationProperty Name="TableClient" Relationship="CRM1Model.FK_TableClient_TableTreaty" FromRole="TableTreaty" ToRole="TableClient" />
+          <NavigationProperty Name="TableServiceTreaty" Relationship="CRM1Model.FK_TableServiceTreaty_TableTreaty" FromRole="TableTreaty" ToRole="TableServiceTreaty" />
+          <NavigationProperty Name="TableTypeTreaty" Relationship="CRM1Model.FK_TableTreaty_TableTypeTreaty" FromRole="TableTreaty" ToRole="TableTypeTreaty" />
         </EntityType>
         <EntityType Name="TableTypeTreaty">
           <Key>
             <PropertyRef Name="TypeTreatyID" />
           </Key>
           <Property Name="TypeTreatyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TypeTreatyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TableTreaty" Relationship="Self.FK_TableTreaty_TableTypeTreaty" FromRole="TableTypeTreaty" ToRole="TableTreaty" />
+          <Property Name="TypeTreatyName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableTreaty" Relationship="CRM1Model.FK_TableTreaty_TableTypeTreaty" FromRole="TableTypeTreaty" ToRole="TableTreaty" />
         </EntityType>
         <EntityType Name="TableUser">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserSurname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserPatronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserSurname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserPatronymic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserRole" Type="Int32" Nullable="false" />
           <Property Name="UserPhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Table_Roles" Relationship="Self.FK_TableUser_Table_Roles" FromRole="TableUser" ToRole="Table_Roles" />
+          <NavigationProperty Name="Table_Roles" Relationship="CRM1Model.FK_TableUser_Table_Roles" FromRole="TableUser" ToRole="Table_Roles" />
         </EntityType>
         <Association Name="FK_Table_Employees_Table_Roles">
-          <End Role="Table_Roles" Type="Self.Table_Roles" Multiplicity="1" />
-          <End Role="Table_Employees" Type="Self.Table_Employees" Multiplicity="*" />
+          <End Type="CRM1Model.Table_Roles" Role="Table_Roles" Multiplicity="1" />
+          <End Type="CRM1Model.Table_Employees" Role="Table_Employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Table_Roles">
               <PropertyRef Name="ID_Role" />
@@ -879,8 +950,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableInformation_Table_Roles">
-          <End Role="Table_Roles" Type="Self.Table_Roles" Multiplicity="1" />
-          <End Role="TableInformation" Type="Self.TableInformation" Multiplicity="*" />
+          <End Type="CRM1Model.Table_Roles" Role="Table_Roles" Multiplicity="1" />
+          <End Type="CRM1Model.TableInformation" Role="TableInformation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Table_Roles">
               <PropertyRef Name="ID_Role" />
@@ -891,8 +962,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableUser_Table_Roles">
-          <End Role="Table_Roles" Type="Self.Table_Roles" Multiplicity="1" />
-          <End Role="TableUser" Type="Self.TableUser" Multiplicity="*" />
+          <End Type="CRM1Model.Table_Roles" Role="Table_Roles" Multiplicity="1" />
+          <End Type="CRM1Model.TableUser" Role="TableUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Table_Roles">
               <PropertyRef Name="ID_Role" />
@@ -903,8 +974,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableAddress_TableCity">
-          <End Role="TableCity" Type="Self.TableCity" Multiplicity="1" />
-          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="*" />
+          <End Type="CRM1Model.TableCity" Role="TableCity" Multiplicity="1" />
+          <End Type="CRM1Model.TableAddress" Role="TableAddress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableCity">
               <PropertyRef Name="CityID" />
@@ -915,8 +986,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableAddress_TableCountry">
-          <End Role="TableCountry" Type="Self.TableCountry" Multiplicity="1" />
-          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="*" />
+          <End Type="CRM1Model.TableCountry" Role="TableCountry" Multiplicity="1" />
+          <End Type="CRM1Model.TableAddress" Role="TableAddress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableCountry">
               <PropertyRef Name="CountryID" />
@@ -927,8 +998,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableAddress_TableDistrict">
-          <End Role="TableDistrict" Type="Self.TableDistrict" Multiplicity="0..1" />
-          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="*" />
+          <End Type="CRM1Model.TableDistrict" Role="TableDistrict" Multiplicity="0..1" />
+          <End Type="CRM1Model.TableAddress" Role="TableAddress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableDistrict">
               <PropertyRef Name="DistrictID" />
@@ -939,8 +1010,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableAddress_TableStreet">
-          <End Role="TableStreet" Type="Self.TableStreet" Multiplicity="1" />
-          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="*" />
+          <End Type="CRM1Model.TableStreet" Role="TableStreet" Multiplicity="1" />
+          <End Type="CRM1Model.TableAddress" Role="TableAddress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableStreet">
               <PropertyRef Name="StreetID" />
@@ -950,33 +1021,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TableClient_TableAddress">
-          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="1" />
-          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TableAddress">
-              <PropertyRef Name="AddressID" />
-            </Principal>
-            <Dependent Role="TableClient">
-              <PropertyRef Name="ClientAddressRegistration" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TableClient_TableAddress1">
-          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="1" />
-          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TableAddress">
-              <PropertyRef Name="AddressID" />
-            </Principal>
-            <Dependent Role="TableClient">
-              <PropertyRef Name="ClientAddressAccommodation" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TableApplication_ServiceType">
-          <End Role="TableServiceType" Type="Self.TableServiceType" Multiplicity="1" />
-          <End Role="TableApplication" Type="Self.TableApplication" Multiplicity="*" />
+          <End Type="CRM1Model.TableServiceType" Role="TableServiceType" Multiplicity="1" />
+          <End Type="CRM1Model.TableApplication" Role="TableApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableServiceType">
               <PropertyRef Name="ServiceTypeID" />
@@ -987,8 +1034,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableApplication_TableProblem">
-          <End Role="TableProblem" Type="Self.TableProblem" Multiplicity="0..1" />
-          <End Role="TableApplication" Type="Self.TableApplication" Multiplicity="*" />
+          <End Type="CRM1Model.TableProblem" Role="TableProblem" Multiplicity="0..1" />
+          <End Type="CRM1Model.TableApplication" Role="TableApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableProblem">
               <PropertyRef Name="ProblemID" />
@@ -999,8 +1046,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableApplication_TableProblemType">
-          <End Role="TableProblemType" Type="Self.TableProblemType" Multiplicity="1" />
-          <End Role="TableApplication" Type="Self.TableApplication" Multiplicity="*" />
+          <End Type="CRM1Model.TableProblemType" Role="TableProblemType" Multiplicity="1" />
+          <End Type="CRM1Model.TableApplication" Role="TableApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableProblemType">
               <PropertyRef Name="ProblemTypeID" />
@@ -1011,8 +1058,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableApplication_TableService">
-          <End Role="TableService" Type="Self.TableService" Multiplicity="1" />
-          <End Role="TableApplication" Type="Self.TableApplication" Multiplicity="*" />
+          <End Type="CRM1Model.TableService" Role="TableService" Multiplicity="1" />
+          <End Type="CRM1Model.TableApplication" Role="TableApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableService">
               <PropertyRef Name="ServiceID" />
@@ -1023,8 +1070,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableApplication_TableServiceStatus">
-          <End Role="TableServiceStatus" Type="Self.TableServiceStatus" Multiplicity="1" />
-          <End Role="TableApplication" Type="Self.TableApplication" Multiplicity="*" />
+          <End Type="CRM1Model.TableServiceStatus" Role="TableServiceStatus" Multiplicity="1" />
+          <End Type="CRM1Model.TableApplication" Role="TableApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableServiceStatus">
               <PropertyRef Name="ServiceStatusID" />
@@ -1035,8 +1082,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableApplication_TableServiceVid">
-          <End Role="TableServiceVid" Type="Self.TableServiceVid" Multiplicity="1" />
-          <End Role="TableApplication" Type="Self.TableApplication" Multiplicity="*" />
+          <End Type="CRM1Model.TableServiceVid" Role="TableServiceVid" Multiplicity="1" />
+          <End Type="CRM1Model.TableApplication" Role="TableApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableServiceVid">
               <PropertyRef Name="ServiceVidID" />
@@ -1047,8 +1094,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableDistrict_TableBuildingType">
-          <End Role="TableBuildingType" Type="Self.TableBuildingType" Multiplicity="1" />
-          <End Role="TableDistrict" Type="Self.TableDistrict" Multiplicity="*" />
+          <End Type="CRM1Model.TableBuildingType" Role="TableBuildingType" Multiplicity="1" />
+          <End Type="CRM1Model.TableDistrict" Role="TableDistrict" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableBuildingType">
               <PropertyRef Name="BuildingTypeID" />
@@ -1059,8 +1106,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableClient_TableEquipment">
-          <End Role="TableEquipment" Type="Self.TableEquipment" Multiplicity="1" />
-          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
+          <End Type="CRM1Model.TableEquipment" Role="TableEquipment" Multiplicity="1" />
+          <End Type="CRM1Model.TableClient" Role="TableClient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableEquipment">
               <PropertyRef Name="EquipmentID" />
@@ -1071,8 +1118,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableClient_TableGender">
-          <End Role="TableGender" Type="Self.TableGender" Multiplicity="1" />
-          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
+          <End Type="CRM1Model.TableGender" Role="TableGender" Multiplicity="1" />
+          <End Type="CRM1Model.TableClient" Role="TableClient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableGender">
               <PropertyRef Name="GenderID" />
@@ -1083,8 +1130,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableClient_TablePassport">
-          <End Role="TablePassport" Type="Self.TablePassport" Multiplicity="1" />
-          <End Role="TableClient" Type="Self.TableClient" Multiplicity="0..1" />
+          <End Type="CRM1Model.TablePassport" Role="TablePassport" Multiplicity="1" />
+          <End Type="CRM1Model.TableClient" Role="TableClient" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="TablePassport">
               <PropertyRef Name="ClientID" />
@@ -1095,8 +1142,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableClient_TableTreaty">
-          <End Role="TableTreaty" Type="Self.TableTreaty" Multiplicity="1" />
-          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
+          <End Type="CRM1Model.TableTreaty" Role="TableTreaty" Multiplicity="1" />
+          <End Type="CRM1Model.TableClient" Role="TableClient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableTreaty">
               <PropertyRef Name="TreatyNumber" />
@@ -1107,8 +1154,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableServiceTreaty_TableTreaty">
-          <End Role="TableTreaty" Type="Self.TableTreaty" Multiplicity="1" />
-          <End Role="TableServiceTreaty" Type="Self.TableServiceTreaty" Multiplicity="*" />
+          <End Type="CRM1Model.TableTreaty" Role="TableTreaty" Multiplicity="1" />
+          <End Type="CRM1Model.TableServiceTreaty" Role="TableServiceTreaty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableTreaty">
               <PropertyRef Name="TreatyNumber" />
@@ -1119,8 +1166,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TableTreaty_TableTypeTreaty">
-          <End Role="TableTypeTreaty" Type="Self.TableTypeTreaty" Multiplicity="1" />
-          <End Role="TableTreaty" Type="Self.TableTreaty" Multiplicity="*" />
+          <End Type="CRM1Model.TableTypeTreaty" Role="TableTypeTreaty" Multiplicity="1" />
+          <End Type="CRM1Model.TableTreaty" Role="TableTreaty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TableTypeTreaty">
               <PropertyRef Name="TypeTreatyID" />
@@ -1130,121 +1177,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Table_Employees" EntityType="Self.Table_Employees" />
-          <EntitySet Name="Table_Roles" EntityType="Self.Table_Roles" />
-          <EntitySet Name="TableAddress" EntityType="Self.TableAddress" />
-          <EntitySet Name="TableApplication" EntityType="Self.TableApplication" />
-          <EntitySet Name="TableBuildingType" EntityType="Self.TableBuildingType" />
-          <EntitySet Name="TableCity" EntityType="Self.TableCity" />
-          <EntitySet Name="TableClient" EntityType="Self.TableClient" />
-          <EntitySet Name="TableCountry" EntityType="Self.TableCountry" />
-          <EntitySet Name="TableDistrict" EntityType="Self.TableDistrict" />
-          <EntitySet Name="TableEquipment" EntityType="Self.TableEquipment" />
-          <EntitySet Name="TableGender" EntityType="Self.TableGender" />
-          <EntitySet Name="TableInformation" EntityType="Self.TableInformation" />
-          <EntitySet Name="TablePassport" EntityType="Self.TablePassport" />
-          <EntitySet Name="TableProblem" EntityType="Self.TableProblem" />
-          <EntitySet Name="TableProblemType" EntityType="Self.TableProblemType" />
-          <EntitySet Name="TableService" EntityType="Self.TableService" />
-          <EntitySet Name="TableServiceStatus" EntityType="Self.TableServiceStatus" />
-          <EntitySet Name="TableServiceTreaty" EntityType="Self.TableServiceTreaty" />
-          <EntitySet Name="TableServiceType" EntityType="Self.TableServiceType" />
-          <EntitySet Name="TableServiceVid" EntityType="Self.TableServiceVid" />
-          <EntitySet Name="TableStreet" EntityType="Self.TableStreet" />
-          <EntitySet Name="TableTreaty" EntityType="Self.TableTreaty" />
-          <EntitySet Name="TableTypeTreaty" EntityType="Self.TableTypeTreaty" />
-          <EntitySet Name="TableUser" EntityType="Self.TableUser" />
-          <AssociationSet Name="FK_Table_Employees_Table_Roles" Association="Self.FK_Table_Employees_Table_Roles">
-            <End Role="Table_Roles" EntitySet="Table_Roles" />
-            <End Role="Table_Employees" EntitySet="Table_Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableInformation_Table_Roles" Association="Self.FK_TableInformation_Table_Roles">
-            <End Role="Table_Roles" EntitySet="Table_Roles" />
-            <End Role="TableInformation" EntitySet="TableInformation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableUser_Table_Roles" Association="Self.FK_TableUser_Table_Roles">
-            <End Role="Table_Roles" EntitySet="Table_Roles" />
-            <End Role="TableUser" EntitySet="TableUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableAddress_TableCity" Association="Self.FK_TableAddress_TableCity">
-            <End Role="TableCity" EntitySet="TableCity" />
-            <End Role="TableAddress" EntitySet="TableAddress" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableAddress_TableCountry" Association="Self.FK_TableAddress_TableCountry">
-            <End Role="TableCountry" EntitySet="TableCountry" />
-            <End Role="TableAddress" EntitySet="TableAddress" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableAddress_TableDistrict" Association="Self.FK_TableAddress_TableDistrict">
-            <End Role="TableDistrict" EntitySet="TableDistrict" />
-            <End Role="TableAddress" EntitySet="TableAddress" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableAddress_TableStreet" Association="Self.FK_TableAddress_TableStreet">
-            <End Role="TableStreet" EntitySet="TableStreet" />
-            <End Role="TableAddress" EntitySet="TableAddress" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableAddress" Association="Self.FK_TableClient_TableAddress">
-            <End Role="TableAddress" EntitySet="TableAddress" />
-            <End Role="TableClient" EntitySet="TableClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableAddress1" Association="Self.FK_TableClient_TableAddress1">
-            <End Role="TableAddress" EntitySet="TableAddress" />
-            <End Role="TableClient" EntitySet="TableClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableApplication_ServiceType" Association="Self.FK_TableApplication_ServiceType">
-            <End Role="TableServiceType" EntitySet="TableServiceType" />
-            <End Role="TableApplication" EntitySet="TableApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableApplication_TableProblem" Association="Self.FK_TableApplication_TableProblem">
-            <End Role="TableProblem" EntitySet="TableProblem" />
-            <End Role="TableApplication" EntitySet="TableApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableApplication_TableProblemType" Association="Self.FK_TableApplication_TableProblemType">
-            <End Role="TableProblemType" EntitySet="TableProblemType" />
-            <End Role="TableApplication" EntitySet="TableApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableApplication_TableService" Association="Self.FK_TableApplication_TableService">
-            <End Role="TableService" EntitySet="TableService" />
-            <End Role="TableApplication" EntitySet="TableApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableApplication_TableServiceStatus" Association="Self.FK_TableApplication_TableServiceStatus">
-            <End Role="TableServiceStatus" EntitySet="TableServiceStatus" />
-            <End Role="TableApplication" EntitySet="TableApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableApplication_TableServiceVid" Association="Self.FK_TableApplication_TableServiceVid">
-            <End Role="TableServiceVid" EntitySet="TableServiceVid" />
-            <End Role="TableApplication" EntitySet="TableApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableDistrict_TableBuildingType" Association="Self.FK_TableDistrict_TableBuildingType">
-            <End Role="TableBuildingType" EntitySet="TableBuildingType" />
-            <End Role="TableDistrict" EntitySet="TableDistrict" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableEquipment" Association="Self.FK_TableClient_TableEquipment">
-            <End Role="TableEquipment" EntitySet="TableEquipment" />
-            <End Role="TableClient" EntitySet="TableClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableGender" Association="Self.FK_TableClient_TableGender">
-            <End Role="TableGender" EntitySet="TableGender" />
-            <End Role="TableClient" EntitySet="TableClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TablePassport" Association="Self.FK_TableClient_TablePassport">
-            <End Role="TablePassport" EntitySet="TablePassport" />
-            <End Role="TableClient" EntitySet="TableClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableTreaty" Association="Self.FK_TableClient_TableTreaty">
-            <End Role="TableTreaty" EntitySet="TableTreaty" />
-            <End Role="TableClient" EntitySet="TableClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableServiceTreaty_TableTreaty" Association="Self.FK_TableServiceTreaty_TableTreaty">
-            <End Role="TableTreaty" EntitySet="TableTreaty" />
-            <End Role="TableServiceTreaty" EntitySet="TableServiceTreaty" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableTreaty_TableTypeTreaty" Association="Self.FK_TableTreaty_TableTypeTreaty">
-            <End Role="TableTypeTreaty" EntitySet="TableTypeTreaty" />
-            <End Role="TableTreaty" EntitySet="TableTreaty" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1253,241 +1186,242 @@
           <EntitySetMapping Name="Table_Employees">
             <EntityTypeMapping TypeName="CRM1Model.Table_Employees">
               <MappingFragment StoreEntitySet="Table_Employees">
-                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Table_Roles">
             <EntityTypeMapping TypeName="CRM1Model.Table_Roles">
               <MappingFragment StoreEntitySet="Table_Roles">
-                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableAddress">
             <EntityTypeMapping TypeName="CRM1Model.TableAddress">
               <MappingFragment StoreEntitySet="TableAddress">
-                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
-                <ScalarProperty Name="AddressCountry" ColumnName="AddressCountry" />
-                <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
-                <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
-                <ScalarProperty Name="AddressHouse" ColumnName="AddressHouse" />
-                <ScalarProperty Name="AddressApartment" ColumnName="AddressApartment" />
                 <ScalarProperty Name="AddressDistrict" ColumnName="AddressDistrict" />
+                <ScalarProperty Name="AddressApartament" ColumnName="AddressApartament" />
+                <ScalarProperty Name="AddressHouse" ColumnName="AddressHouse" />
+                <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+                <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+                <ScalarProperty Name="AddressCountry" ColumnName="AddressCountry" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableApplication">
             <EntityTypeMapping TypeName="CRM1Model.TableApplication">
               <MappingFragment StoreEntitySet="TableApplication">
-                <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
-                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
-                <ScalarProperty Name="ApplicationPersonalAccount" ColumnName="ApplicationPersonalAccount" />
-                <ScalarProperty Name="ApplicationService" ColumnName="ApplicationService" />
-                <ScalarProperty Name="ApplicationServiceType" ColumnName="ApplicationServiceType" />
-                <ScalarProperty Name="ApplicationVid" ColumnName="ApplicationVid" />
-                <ScalarProperty Name="ApplicationServiceStatus" ColumnName="ApplicationServiceStatus" />
-                <ScalarProperty Name="ApplicationTypeEquipment" ColumnName="ApplicationTypeEquipment" />
-                <ScalarProperty Name="ApplicationProblem" ColumnName="ApplicationProblem" />
-                <ScalarProperty Name="ApplicationDateClosing" ColumnName="ApplicationDateClosing" />
                 <ScalarProperty Name="ApplicationTypeProblem" ColumnName="ApplicationTypeProblem" />
+                <ScalarProperty Name="ApplicationDateClosing" ColumnName="ApplicationDateClosing" />
+                <ScalarProperty Name="ApplicationProblem" ColumnName="ApplicationProblem" />
+                <ScalarProperty Name="ApplicationTypeEquipment" ColumnName="ApplicationTypeEquipment" />
+                <ScalarProperty Name="ApplicationServiceStatus" ColumnName="ApplicationServiceStatus" />
+                <ScalarProperty Name="ApplicationVid" ColumnName="ApplicationVid" />
+                <ScalarProperty Name="ApplicationServiceType" ColumnName="ApplicationServiceType" />
+                <ScalarProperty Name="ApplicationService" ColumnName="ApplicationService" />
+                <ScalarProperty Name="ApplicationPersonalAccount" ColumnName="ApplicationPersonalAccount" />
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableBuildingType">
             <EntityTypeMapping TypeName="CRM1Model.TableBuildingType">
               <MappingFragment StoreEntitySet="TableBuildingType">
-                <ScalarProperty Name="BuildingTypeID" ColumnName="BuildingTypeID" />
                 <ScalarProperty Name="BuildingTypeName" ColumnName="BuildingTypeName" />
+                <ScalarProperty Name="BuildingTypeID" ColumnName="BuildingTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableCity">
             <EntityTypeMapping TypeName="CRM1Model.TableCity">
               <MappingFragment StoreEntitySet="TableCity">
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableClient">
             <EntityTypeMapping TypeName="CRM1Model.TableClient">
               <MappingFragment StoreEntitySet="TableClient">
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="ClientSurname" ColumnName="ClientSurname" />
-                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
-                <ScalarProperty Name="ClientPatronymic" ColumnName="ClientPatronymic" />
-                <ScalarProperty Name="ClientGenre" ColumnName="ClientGenre" />
-                <ScalarProperty Name="ClientBirthday" ColumnName="ClientBirthday" />
-                <ScalarProperty Name="ClientNumberPhone" ColumnName="ClientNumberPhone" />
-                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
-                <ScalarProperty Name="ClientAddressRegistration" ColumnName="ClientAddressRegistration" />
-                <ScalarProperty Name="ClientAddressAccommodation" ColumnName="ClientAddressAccommodation" />
-                <ScalarProperty Name="ClientTreaty" ColumnName="ClientTreaty" />
                 <ScalarProperty Name="ClientEquipment" ColumnName="ClientEquipment" />
+                <ScalarProperty Name="ClientTreaty" ColumnName="ClientTreaty" />
+                <ScalarProperty Name="ClientAddressAccommodation" ColumnName="ClientAddressAccommodation" />
+                <ScalarProperty Name="ClientAddressRegistration" ColumnName="ClientAddressRegistration" />
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="ClientNumberPhone" ColumnName="ClientNumberPhone" />
+                <ScalarProperty Name="ClientBirthday" ColumnName="ClientBirthday" />
+                <ScalarProperty Name="ClientGenre" ColumnName="ClientGenre" />
+                <ScalarProperty Name="ClientPatronymic" ColumnName="ClientPatronymic" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientSurname" ColumnName="ClientSurname" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableCountry">
             <EntityTypeMapping TypeName="CRM1Model.TableCountry">
               <MappingFragment StoreEntitySet="TableCountry">
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableDistrict">
             <EntityTypeMapping TypeName="CRM1Model.TableDistrict">
               <MappingFragment StoreEntitySet="TableDistrict">
-                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
-                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
-                <ScalarProperty Name="DistrictSquare" ColumnName="DistrictSquare" />
-                <ScalarProperty Name="DistrictPopulation" ColumnName="DistrictPopulation" />
-                <ScalarProperty Name="DistrictMetro" ColumnName="DistrictMetro" />
                 <ScalarProperty Name="DistrictBuildingType" ColumnName="DistrictBuildingType" />
+                <ScalarProperty Name="DistrictMetro" ColumnName="DistrictMetro" />
+                <ScalarProperty Name="DistrictPopulation" ColumnName="DistrictPopulation" />
+                <ScalarProperty Name="DistrictSquare" ColumnName="DistrictSquare" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableEquipment">
             <EntityTypeMapping TypeName="CRM1Model.TableEquipment">
               <MappingFragment StoreEntitySet="TableEquipment">
-                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
-                <ScalarProperty Name="EquipmentSerialNumber" ColumnName="EquipmentSerialNumber" />
                 <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
+                <ScalarProperty Name="EquipmentSerialNumber" ColumnName="EquipmentSerialNumber" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableGender">
             <EntityTypeMapping TypeName="CRM1Model.TableGender">
               <MappingFragment StoreEntitySet="TableGender">
-                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
                 <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableInformation">
             <EntityTypeMapping TypeName="CRM1Model.TableInformation">
               <MappingFragment StoreEntitySet="TableInformation">
-                <ScalarProperty Name="InformationID" ColumnName="InformationID" />
-                <ScalarProperty Name="InformationRole" ColumnName="InformationRole" />
                 <ScalarProperty Name="InformationText" ColumnName="InformationText" />
+                <ScalarProperty Name="InformationDate" ColumnName="InformationDate" />
+                <ScalarProperty Name="InformationRole" ColumnName="InformationRole" />
+                <ScalarProperty Name="InformationID" ColumnName="InformationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TablePassport">
             <EntityTypeMapping TypeName="CRM1Model.TablePassport">
               <MappingFragment StoreEntitySet="TablePassport">
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
-                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
-                <ScalarProperty Name="PassportCode" ColumnName="PassportCode" />
-                <ScalarProperty Name="PassportIssued" ColumnName="PassportIssued" />
                 <ScalarProperty Name="PassportDateIssued" ColumnName="PassportDateIssued" />
+                <ScalarProperty Name="PassportIssued" ColumnName="PassportIssued" />
+                <ScalarProperty Name="PassportCode" ColumnName="PassportCode" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableProblem">
             <EntityTypeMapping TypeName="CRM1Model.TableProblem">
               <MappingFragment StoreEntitySet="TableProblem">
-                <ScalarProperty Name="ProblemID" ColumnName="ProblemID" />
                 <ScalarProperty Name="ProblemText" ColumnName="ProblemText" />
+                <ScalarProperty Name="ProblemID" ColumnName="ProblemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableProblemType">
             <EntityTypeMapping TypeName="CRM1Model.TableProblemType">
               <MappingFragment StoreEntitySet="TableProblemType">
-                <ScalarProperty Name="ProblemTypeID" ColumnName="ProblemTypeID" />
                 <ScalarProperty Name="ProblemTypeName" ColumnName="ProblemTypeName" />
+                <ScalarProperty Name="ProblemTypeID" ColumnName="ProblemTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableService">
             <EntityTypeMapping TypeName="CRM1Model.TableService">
               <MappingFragment StoreEntitySet="TableService">
-                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableServiceStatus">
             <EntityTypeMapping TypeName="CRM1Model.TableServiceStatus">
               <MappingFragment StoreEntitySet="TableServiceStatus">
-                <ScalarProperty Name="ServiceStatusID" ColumnName="ServiceStatusID" />
                 <ScalarProperty Name="ServiceStatusName" ColumnName="ServiceStatusName" />
+                <ScalarProperty Name="ServiceStatusID" ColumnName="ServiceStatusID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableServiceTreaty">
             <EntityTypeMapping TypeName="CRM1Model.TableServiceTreaty">
               <MappingFragment StoreEntitySet="TableServiceTreaty">
-                <ScalarProperty Name="ServiceTreatyID" ColumnName="ServiceTreatyID" />
-                <ScalarProperty Name="ServiceTreatyServiceID" ColumnName="ServiceTreatyServiceID" />
                 <ScalarProperty Name="ServiceTreatyTreatyID" ColumnName="ServiceTreatyTreatyID" />
+                <ScalarProperty Name="ServiceTreatyServiceID" ColumnName="ServiceTreatyServiceID" />
+                <ScalarProperty Name="ServiceTreatyID" ColumnName="ServiceTreatyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableServiceType">
             <EntityTypeMapping TypeName="CRM1Model.TableServiceType">
               <MappingFragment StoreEntitySet="TableServiceType">
-                <ScalarProperty Name="ServiceTypeID" ColumnName="ServiceTypeID" />
                 <ScalarProperty Name="ServiceTypeName" ColumnName="ServiceTypeName" />
+                <ScalarProperty Name="ServiceTypeID" ColumnName="ServiceTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableServiceVid">
             <EntityTypeMapping TypeName="CRM1Model.TableServiceVid">
               <MappingFragment StoreEntitySet="TableServiceVid">
-                <ScalarProperty Name="ServiceVidID" ColumnName="ServiceVidID" />
                 <ScalarProperty Name="ServiceVidName" ColumnName="ServiceVidName" />
+                <ScalarProperty Name="ServiceVidID" ColumnName="ServiceVidID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableStreet">
             <EntityTypeMapping TypeName="CRM1Model.TableStreet">
               <MappingFragment StoreEntitySet="TableStreet">
-                <ScalarProperty Name="StreetID" ColumnName="StreetID" />
                 <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="StreetID" ColumnName="StreetID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableTreaty">
             <EntityTypeMapping TypeName="CRM1Model.TableTreaty">
               <MappingFragment StoreEntitySet="TableTreaty">
-                <ScalarProperty Name="TreatyNumber" ColumnName="TreatyNumber" />
-                <ScalarProperty Name="TreatyDateСonclusion" ColumnName="TreatyDateСonclusion" />
-                <ScalarProperty Name="TreatyType" ColumnName="TreatyType" />
-                <ScalarProperty Name="TreatyReasonForTermination" ColumnName="TreatyReasonForTermination" />
-                <ScalarProperty Name="TreatyTerminationDate" ColumnName="TreatyTerminationDate" />
                 <ScalarProperty Name="TreatyPersonalAccount" ColumnName="TreatyPersonalAccount" />
+                <ScalarProperty Name="TreatyTerminationDate" ColumnName="TreatyTerminationDate" />
+                <ScalarProperty Name="TreatyReasonForTermination" ColumnName="TreatyReasonForTermination" />
+                <ScalarProperty Name="TreatyType" ColumnName="TreatyType" />
+                <ScalarProperty Name="TreatyDateСonclusion" ColumnName="TreatyDateСonclusion" />
+                <ScalarProperty Name="TreatyNumber" ColumnName="TreatyNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableTypeTreaty">
             <EntityTypeMapping TypeName="CRM1Model.TableTypeTreaty">
               <MappingFragment StoreEntitySet="TableTypeTreaty">
-                <ScalarProperty Name="TypeTreatyID" ColumnName="TypeTreatyID" />
                 <ScalarProperty Name="TypeTreatyName" ColumnName="TypeTreatyName" />
+                <ScalarProperty Name="TypeTreatyID" ColumnName="TypeTreatyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TableUser">
             <EntityTypeMapping TypeName="CRM1Model.TableUser">
               <MappingFragment StoreEntitySet="TableUser">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserSurname" ColumnName="UserSurname" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserPatronymic" ColumnName="UserPatronymic" />
-                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
                 <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="UserPatronymic" ColumnName="UserPatronymic" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserSurname" ColumnName="UserSurname" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
