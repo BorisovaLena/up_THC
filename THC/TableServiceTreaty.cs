@@ -18,6 +18,7 @@ namespace THC
         public int ServiceTreatyServiceID { get; set; }
         public string ServiceTreatyTreatyID { get; set; }
     
+        public virtual TableService TableService { get; set; }
         public virtual TableTreaty TableTreaty { get; set; }
     }
 }

@@ -33,6 +33,15 @@
                 <TextBox Name="tbSearchLCh" />
             </GroupBox>
         </Grid>
+        <DataGrid Name="dgSubscribers" Grid.Row="1" Margin="10" FontSize="18" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" Binding="{Binding SubscriberNomer}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номер договора" Binding="{Binding ClientTreaty}" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Лицевой счет" Binding="{Binding  Contracts.PersonalAccount}" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Услуги" Binding="{Binding  ListServices}" Width="2*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         
     </Grid>
 </Page>

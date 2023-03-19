@@ -355,6 +355,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TableClient_TableAddress">
+          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="1" />
+          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableAddress">
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="TableClient">
+              <PropertyRef Name="ClientAddressRegistration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableClient_TableAddress1">
+          <End Role="TableAddress" Type="Self.TableAddress" Multiplicity="1" />
+          <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableAddress">
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="TableClient">
+              <PropertyRef Name="ClientAddressAccommodation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TableClient_TableEquipment">
           <End Role="TableEquipment" Type="Self.TableEquipment" Multiplicity="1" />
           <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
@@ -391,7 +415,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TableClient_TableTreaty">
+        <Association Name="FK_TableClient_TableTreaty1">
           <End Role="TableTreaty" Type="Self.TableTreaty" Multiplicity="1" />
           <End Role="TableClient" Type="Self.TableClient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -427,7 +451,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TableServiceTreaty_TableTreaty">
+        <Association Name="FK_TableServiceTreaty_TableService">
+          <End Role="TableService" Type="Self.TableService" Multiplicity="1" />
+          <End Role="TableServiceTreaty" Type="Self.TableServiceTreaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableService">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="TableServiceTreaty">
+              <PropertyRef Name="ServiceTreatyServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableServiceTreaty_TableTreaty1">
           <End Role="TableTreaty" Type="Self.TableTreaty" Multiplicity="1" />
           <End Role="TableServiceTreaty" Type="Self.TableServiceTreaty" Multiplicity="*" />
           <ReferentialConstraint>
@@ -532,6 +568,14 @@
             <End Role="TableServiceVid" EntitySet="TableServiceVid" />
             <End Role="TableApplication" EntitySet="TableApplication" />
           </AssociationSet>
+          <AssociationSet Name="FK_TableClient_TableAddress" Association="Self.FK_TableClient_TableAddress">
+            <End Role="TableAddress" EntitySet="TableAddress" />
+            <End Role="TableClient" EntitySet="TableClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableClient_TableAddress1" Association="Self.FK_TableClient_TableAddress1">
+            <End Role="TableAddress" EntitySet="TableAddress" />
+            <End Role="TableClient" EntitySet="TableClient" />
+          </AssociationSet>
           <AssociationSet Name="FK_TableClient_TableEquipment" Association="Self.FK_TableClient_TableEquipment">
             <End Role="TableEquipment" EntitySet="TableEquipment" />
             <End Role="TableClient" EntitySet="TableClient" />
@@ -544,7 +588,7 @@
             <End Role="TablePassport" EntitySet="TablePassport" />
             <End Role="TableClient" EntitySet="TableClient" />
           </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableTreaty" Association="Self.FK_TableClient_TableTreaty">
+          <AssociationSet Name="FK_TableClient_TableTreaty1" Association="Self.FK_TableClient_TableTreaty1">
             <End Role="TableTreaty" EntitySet="TableTreaty" />
             <End Role="TableClient" EntitySet="TableClient" />
           </AssociationSet>
@@ -556,7 +600,11 @@
             <End Role="Table_Roles" EntitySet="Table_Roles" />
             <End Role="TableInformation" EntitySet="TableInformation" />
           </AssociationSet>
-          <AssociationSet Name="FK_TableServiceTreaty_TableTreaty" Association="Self.FK_TableServiceTreaty_TableTreaty">
+          <AssociationSet Name="FK_TableServiceTreaty_TableService" Association="Self.FK_TableServiceTreaty_TableService">
+            <End Role="TableService" EntitySet="TableService" />
+            <End Role="TableServiceTreaty" EntitySet="TableServiceTreaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableServiceTreaty_TableTreaty1" Association="Self.FK_TableServiceTreaty_TableTreaty1">
             <End Role="TableTreaty" EntitySet="TableTreaty" />
             <End Role="TableServiceTreaty" EntitySet="TableServiceTreaty" />
           </AssociationSet>
@@ -626,6 +674,14 @@
             <End Role="TableStreet" EntitySet="TableStreet" />
             <End Role="TableAddress" EntitySet="TableAddress" />
           </AssociationSet>
+          <AssociationSet Name="FK_TableClient_TableAddress" Association="CRM1Model.FK_TableClient_TableAddress">
+            <End Role="TableAddress" EntitySet="TableAddress" />
+            <End Role="TableClient" EntitySet="TableClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableClient_TableAddress1" Association="CRM1Model.FK_TableClient_TableAddress1">
+            <End Role="TableAddress" EntitySet="TableAddress" />
+            <End Role="TableClient" EntitySet="TableClient" />
+          </AssociationSet>
           <AssociationSet Name="FK_TableApplication_ServiceType" Association="CRM1Model.FK_TableApplication_ServiceType">
             <End Role="TableServiceType" EntitySet="TableServiceType" />
             <End Role="TableApplication" EntitySet="TableApplication" />
@@ -666,11 +722,15 @@
             <End Role="TablePassport" EntitySet="TablePassport" />
             <End Role="TableClient" EntitySet="TableClient" />
           </AssociationSet>
-          <AssociationSet Name="FK_TableClient_TableTreaty" Association="CRM1Model.FK_TableClient_TableTreaty">
+          <AssociationSet Name="FK_TableClient_TableTreaty1" Association="CRM1Model.FK_TableClient_TableTreaty1">
             <End Role="TableTreaty" EntitySet="TableTreaty" />
             <End Role="TableClient" EntitySet="TableClient" />
           </AssociationSet>
-          <AssociationSet Name="FK_TableServiceTreaty_TableTreaty" Association="CRM1Model.FK_TableServiceTreaty_TableTreaty">
+          <AssociationSet Name="FK_TableServiceTreaty_TableService" Association="CRM1Model.FK_TableServiceTreaty_TableService">
+            <End Role="TableService" EntitySet="TableService" />
+            <End Role="TableServiceTreaty" EntitySet="TableServiceTreaty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableServiceTreaty_TableTreaty1" Association="CRM1Model.FK_TableServiceTreaty_TableTreaty1">
             <End Role="TableTreaty" EntitySet="TableTreaty" />
             <End Role="TableServiceTreaty" EntitySet="TableServiceTreaty" />
           </AssociationSet>
@@ -718,6 +778,8 @@
           <NavigationProperty Name="TableCountry" Relationship="CRM1Model.FK_TableAddress_TableCountry" FromRole="TableAddress" ToRole="TableCountry" />
           <NavigationProperty Name="TableDistrict" Relationship="CRM1Model.FK_TableAddress_TableDistrict" FromRole="TableAddress" ToRole="TableDistrict" />
           <NavigationProperty Name="TableStreet" Relationship="CRM1Model.FK_TableAddress_TableStreet" FromRole="TableAddress" ToRole="TableStreet" />
+          <NavigationProperty Name="TableClient" Relationship="CRM1Model.FK_TableClient_TableAddress" FromRole="TableAddress" ToRole="TableClient" />
+          <NavigationProperty Name="TableClient1" Relationship="CRM1Model.FK_TableClient_TableAddress1" FromRole="TableAddress" ToRole="TableClient" />
         </EntityType>
         <EntityType Name="TableApplication">
           <Key>
@@ -773,10 +835,12 @@
           <Property Name="ClientAddressAccommodation" Type="Int32" Nullable="false" />
           <Property Name="ClientTreaty" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ClientEquipment" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TableAddress" Relationship="CRM1Model.FK_TableClient_TableAddress" FromRole="TableClient" ToRole="TableAddress" />
+          <NavigationProperty Name="TableAddress1" Relationship="CRM1Model.FK_TableClient_TableAddress1" FromRole="TableClient" ToRole="TableAddress" />
           <NavigationProperty Name="TableEquipment" Relationship="CRM1Model.FK_TableClient_TableEquipment" FromRole="TableClient" ToRole="TableEquipment" />
           <NavigationProperty Name="TableGender" Relationship="CRM1Model.FK_TableClient_TableGender" FromRole="TableClient" ToRole="TableGender" />
           <NavigationProperty Name="TablePassport" Relationship="CRM1Model.FK_TableClient_TablePassport" FromRole="TableClient" ToRole="TablePassport" />
-          <NavigationProperty Name="TableTreaty" Relationship="CRM1Model.FK_TableClient_TableTreaty" FromRole="TableClient" ToRole="TableTreaty" />
+          <NavigationProperty Name="TableTreaty" Relationship="CRM1Model.FK_TableClient_TableTreaty1" FromRole="TableClient" ToRole="TableTreaty" />
         </EntityType>
         <EntityType Name="TableCountry">
           <Key>
@@ -861,6 +925,7 @@
           <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TableApplication" Relationship="CRM1Model.FK_TableApplication_TableService" FromRole="TableService" ToRole="TableApplication" />
+          <NavigationProperty Name="TableServiceTreaty" Relationship="CRM1Model.FK_TableServiceTreaty_TableService" FromRole="TableService" ToRole="TableServiceTreaty" />
         </EntityType>
         <EntityType Name="TableServiceStatus">
           <Key>
@@ -877,7 +942,8 @@
           <Property Name="ServiceTreatyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceTreatyServiceID" Type="Int32" Nullable="false" />
           <Property Name="ServiceTreatyTreatyID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TableTreaty" Relationship="CRM1Model.FK_TableServiceTreaty_TableTreaty" FromRole="TableServiceTreaty" ToRole="TableTreaty" />
+          <NavigationProperty Name="TableService" Relationship="CRM1Model.FK_TableServiceTreaty_TableService" FromRole="TableServiceTreaty" ToRole="TableService" />
+          <NavigationProperty Name="TableTreaty" Relationship="CRM1Model.FK_TableServiceTreaty_TableTreaty1" FromRole="TableServiceTreaty" ToRole="TableTreaty" />
         </EntityType>
         <EntityType Name="TableServiceType">
           <Key>
@@ -913,8 +979,8 @@
           <Property Name="TreatyReasonForTermination" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TreatyTerminationDate" Type="DateTime" Precision="3" />
           <Property Name="TreatyPersonalAccount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TableClient" Relationship="CRM1Model.FK_TableClient_TableTreaty" FromRole="TableTreaty" ToRole="TableClient" />
-          <NavigationProperty Name="TableServiceTreaty" Relationship="CRM1Model.FK_TableServiceTreaty_TableTreaty" FromRole="TableTreaty" ToRole="TableServiceTreaty" />
+          <NavigationProperty Name="TableClient" Relationship="CRM1Model.FK_TableClient_TableTreaty1" FromRole="TableTreaty" ToRole="TableClient" />
+          <NavigationProperty Name="TableServiceTreaty" Relationship="CRM1Model.FK_TableServiceTreaty_TableTreaty1" FromRole="TableTreaty" ToRole="TableServiceTreaty" />
           <NavigationProperty Name="TableTypeTreaty" Relationship="CRM1Model.FK_TableTreaty_TableTypeTreaty" FromRole="TableTreaty" ToRole="TableTypeTreaty" />
         </EntityType>
         <EntityType Name="TableTypeTreaty">
@@ -1018,6 +1084,30 @@
             </Principal>
             <Dependent Role="TableAddress">
               <PropertyRef Name="AddressStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableClient_TableAddress">
+          <End Type="CRM1Model.TableAddress" Role="TableAddress" Multiplicity="1" />
+          <End Type="CRM1Model.TableClient" Role="TableClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableAddress">
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="TableClient">
+              <PropertyRef Name="ClientAddressRegistration" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableClient_TableAddress1">
+          <End Type="CRM1Model.TableAddress" Role="TableAddress" Multiplicity="1" />
+          <End Type="CRM1Model.TableClient" Role="TableClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableAddress">
+              <PropertyRef Name="AddressID" />
+            </Principal>
+            <Dependent Role="TableClient">
+              <PropertyRef Name="ClientAddressAccommodation" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1141,7 +1231,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TableClient_TableTreaty">
+        <Association Name="FK_TableClient_TableTreaty1">
           <End Type="CRM1Model.TableTreaty" Role="TableTreaty" Multiplicity="1" />
           <End Type="CRM1Model.TableClient" Role="TableClient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1153,7 +1243,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TableServiceTreaty_TableTreaty">
+        <Association Name="FK_TableServiceTreaty_TableService">
+          <End Type="CRM1Model.TableService" Role="TableService" Multiplicity="1" />
+          <End Type="CRM1Model.TableServiceTreaty" Role="TableServiceTreaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableService">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="TableServiceTreaty">
+              <PropertyRef Name="ServiceTreatyServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableServiceTreaty_TableTreaty1">
           <End Type="CRM1Model.TableTreaty" Role="TableTreaty" Multiplicity="1" />
           <End Type="CRM1Model.TableServiceTreaty" Role="TableServiceTreaty" Multiplicity="*" />
           <ReferentialConstraint>

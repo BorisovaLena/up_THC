@@ -18,6 +18,7 @@ namespace THC
         public TableService()
         {
             this.TableApplication = new HashSet<TableApplication>();
+            this.TableServiceTreaty = new HashSet<TableServiceTreaty>();
         }
     
         public int ServiceID { get; set; }
@@ -25,5 +26,7 @@ namespace THC
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TableApplication> TableApplication { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TableServiceTreaty> TableServiceTreaty { get; set; }
     }
 }

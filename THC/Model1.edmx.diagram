@@ -5,30 +5,30 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6a6b6c5d4d8847599d4871ee6d42f1cd" Name="Diagram1" ZoomLevel="21">
-        <EntityTypeShape EntityType="CRM1Model.Table_Employees" Width="1.5" PointX="5" PointY="15.125" />
-        <EntityTypeShape EntityType="CRM1Model.Table_Roles" Width="1.5" PointX="2.75" PointY="18.5" />
-        <EntityTypeShape EntityType="CRM1Model.TableAddress" Width="1.5" PointX="15.25" PointY="12.875" />
-        <EntityTypeShape EntityType="CRM1Model.TableApplication" Width="1.5" PointX="3" PointY="2" />
-        <EntityTypeShape EntityType="CRM1Model.TableBuildingType" Width="1.5" PointX="10.75" PointY="13.625" />
-        <EntityTypeShape EntityType="CRM1Model.TableCity" Width="1.5" PointX="13" PointY="16.625" />
-        <EntityTypeShape EntityType="CRM1Model.TableClient" Width="1.5" PointX="10.25" PointY="3.375" />
-        <EntityTypeShape EntityType="CRM1Model.TableCountry" Width="1.5" PointX="13" PointY="10.25" />
-        <EntityTypeShape EntityType="CRM1Model.TableDistrict" Width="1.5" PointX="13" PointY="13.125" />
-        <EntityTypeShape EntityType="CRM1Model.TableEquipment" Width="1.5" PointX="8" PointY="0.75" />
-        <EntityTypeShape EntityType="CRM1Model.TableGender" Width="1.5" PointX="8" PointY="11.375" />
-        <EntityTypeShape EntityType="CRM1Model.TableInformation" Width="1.5" PointX="5" PointY="21.75" />
-        <EntityTypeShape EntityType="CRM1Model.TablePassport" Width="1.5" PointX="8" PointY="8.25" />
-        <EntityTypeShape EntityType="CRM1Model.TableProblem" Width="1.5" PointX="0.75" PointY="3.25" />
-        <EntityTypeShape EntityType="CRM1Model.TableProblemType" Width="1.5" PointX="0.75" PointY="13.5" />
-        <EntityTypeShape EntityType="CRM1Model.TableService" Width="1.5" PointX="0.75" PointY="11.125" />
-        <EntityTypeShape EntityType="CRM1Model.TableServiceStatus" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="CRM1Model.TableServiceTreaty" Width="1.5" PointX="10.25" PointY="9.375" />
-        <EntityTypeShape EntityType="CRM1Model.TableServiceType" Width="1.5" PointX="0.75" PointY="15.875" />
-        <EntityTypeShape EntityType="CRM1Model.TableServiceVid" Width="1.5" PointX="0.75" PointY="6.375" />
-        <EntityTypeShape EntityType="CRM1Model.TableStreet" Width="1.5" PointX="13" PointY="19" />
-        <EntityTypeShape EntityType="CRM1Model.TableTreaty" Width="1.5" PointX="8" PointY="4" />
-        <EntityTypeShape EntityType="CRM1Model.TableTypeTreaty" Width="1.5" PointX="5.75" PointY="4.625" />
-        <EntityTypeShape EntityType="CRM1Model.TableUser" Width="1.5" PointX="5" PointY="18.625" />
+        <EntityTypeShape EntityType="CRM1Model.Table_Employees" Width="1.5" PointX="15" PointY="7.125" />
+        <EntityTypeShape EntityType="CRM1Model.Table_Roles" Width="1.5" PointX="12.75" PointY="4.5" />
+        <EntityTypeShape EntityType="CRM1Model.TableAddress" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="CRM1Model.TableApplication" Width="1.5" PointX="10" PointY="8.5" />
+        <EntityTypeShape EntityType="CRM1Model.TableBuildingType" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="CRM1Model.TableCity" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="CRM1Model.TableClient" Width="1.5" PointX="7.5" PointY="1" />
+        <EntityTypeShape EntityType="CRM1Model.TableCountry" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="CRM1Model.TableDistrict" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="CRM1Model.TableEquipment" Width="1.5" PointX="5.25" PointY="5.875" />
+        <EntityTypeShape EntityType="CRM1Model.TableGender" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="CRM1Model.TableInformation" Width="1.5" PointX="15" PointY="1.25" />
+        <EntityTypeShape EntityType="CRM1Model.TablePassport" Width="1.5" PointX="5.25" PointY="16.25" />
+        <EntityTypeShape EntityType="CRM1Model.TableProblem" Width="1.5" PointX="7.75" PointY="19.625" />
+        <EntityTypeShape EntityType="CRM1Model.TableProblemType" Width="1.5" PointX="7.75" PointY="14.875" />
+        <EntityTypeShape EntityType="CRM1Model.TableService" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CRM1Model.TableServiceStatus" Width="1.5" PointX="7.75" PointY="12.5" />
+        <EntityTypeShape EntityType="CRM1Model.TableServiceTreaty" Width="1.5" PointX="10" PointY="13.625" />
+        <EntityTypeShape EntityType="CRM1Model.TableServiceType" Width="1.5" PointX="7.75" PointY="17.25" />
+        <EntityTypeShape EntityType="CRM1Model.TableServiceVid" Width="1.5" PointX="7.75" PointY="7.25" />
+        <EntityTypeShape EntityType="CRM1Model.TableStreet" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="CRM1Model.TableTreaty" Width="1.5" PointX="5.25" PointY="12.75" />
+        <EntityTypeShape EntityType="CRM1Model.TableTypeTreaty" Width="1.5" PointX="3" PointY="13.25" />
+        <EntityTypeShape EntityType="CRM1Model.TableUser" Width="1.5" PointX="15" PointY="4" />
         <AssociationConnector Association="CRM1Model.FK_Table_Employees_Table_Roles" />
         <AssociationConnector Association="CRM1Model.FK_TableInformation_Table_Roles" />
         <AssociationConnector Association="CRM1Model.FK_TableUser_Table_Roles" />
@@ -36,6 +36,8 @@
         <AssociationConnector Association="CRM1Model.FK_TableAddress_TableCountry" />
         <AssociationConnector Association="CRM1Model.FK_TableAddress_TableDistrict" />
         <AssociationConnector Association="CRM1Model.FK_TableAddress_TableStreet" />
+        <AssociationConnector Association="CRM1Model.FK_TableClient_TableAddress" />
+        <AssociationConnector Association="CRM1Model.FK_TableClient_TableAddress1" />
         <AssociationConnector Association="CRM1Model.FK_TableApplication_ServiceType" />
         <AssociationConnector Association="CRM1Model.FK_TableApplication_TableProblem" />
         <AssociationConnector Association="CRM1Model.FK_TableApplication_TableProblemType" />
@@ -46,8 +48,9 @@
         <AssociationConnector Association="CRM1Model.FK_TableClient_TableEquipment" />
         <AssociationConnector Association="CRM1Model.FK_TableClient_TableGender" />
         <AssociationConnector Association="CRM1Model.FK_TableClient_TablePassport" />
-        <AssociationConnector Association="CRM1Model.FK_TableClient_TableTreaty" />
-        <AssociationConnector Association="CRM1Model.FK_TableServiceTreaty_TableTreaty" />
+        <AssociationConnector Association="CRM1Model.FK_TableClient_TableTreaty1" />
+        <AssociationConnector Association="CRM1Model.FK_TableServiceTreaty_TableService" />
+        <AssociationConnector Association="CRM1Model.FK_TableServiceTreaty_TableTreaty1" />
         <AssociationConnector Association="CRM1Model.FK_TableTreaty_TableTypeTreaty" />
       </Diagram>
     </edmx:Diagrams>

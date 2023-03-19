@@ -27,6 +27,8 @@ namespace THC
         public string ClientTreaty { get; set; }
         public int ClientEquipment { get; set; }
     
+        public virtual TableAddress TableAddress { get; set; }
+        public virtual TableAddress TableAddress1 { get; set; }
         public virtual TableEquipment TableEquipment { get; set; }
         public virtual TableGender TableGender { get; set; }
         public virtual TablePassport TablePassport { get; set; }
