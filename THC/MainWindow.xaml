@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:THC"
         mc:Ignorable="d"
         Icon="pictures/image.ico"
-        Title="MainWindow" Height="450" Width="800">
+        MinHeight="600" MinWidth="900"
+        Title="MainWindow" Height="600" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -16,28 +17,30 @@
         <Grid Grid.Column="0">
             <StackPanel>
                 <Image Source="pictures/Лого ТНС.jpg"/>
-                <StackPanel Name="spAbon">
-                    <Image Source="pictures/Абоненты.png" Width="80"/>
+                <StackPanel Name="spAbon" MouseDown="spAbon_MouseDown" HorizontalAlignment="Center">
+                    <Image Source="pictures/Абоненты.png" Width="60"/>
                     <TextBlock Text="Абоненты"/>
                 </StackPanel>
-                <StackPanel Name="spUO">
-                    <Image Source="pictures/Управление обрудованием.png" Width="60"/>
-                    <TextBlock Text="Управление оборудаванием"/>
+                <StackPanel Name="spUO" HorizontalAlignment="Center">
+                    <Image Source="pictures/Управление обрудованием.png" Width="50"/>
+                    <TextBlock Text="Управление" HorizontalAlignment="Center"/>
+                    <TextBlock Text="оборудаванием"/>
                 </StackPanel>
-                <StackPanel Name="spActive">
-                    <Image Source="pictures/Активы.png" Width="50"/>
-                    <TextBlock Text="Активы"/>
+                <StackPanel Name="spActive" HorizontalAlignment="Center">
+                    <Image Source="pictures/Активы.png" Width="40"/>
+                    <TextBlock Text="Активы" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Name="spBill">
-                    <Image Source="pictures/Биллинг.png" Width="50"/>
+                <StackPanel Name="spBill" HorizontalAlignment="Center">
+                    <Image Source="pictures/Биллинг.png" Width="40"/>
                     <TextBlock Text="Биллинг"/>
                 </StackPanel>
-                <StackPanel Name="spPP">
+                <StackPanel Name="spPP" HorizontalAlignment="Center">
                     <Image Source="pictures/Поддержка пользователей.png" Width="50"/>
-                    <TextBlock Text="Поддержка пользователей"/>
+                    <TextBlock Text="Поддержка" HorizontalAlignment="Center"/>
+                    <TextBlock Text="пользователей"/>
                 </StackPanel>
-                <StackPanel Name="spCRM">
-                    <Image Source="pictures/CRM.png" Width="50"/>
+                <StackPanel Name="spCRM" HorizontalAlignment="Center">
+                    <Image Source="pictures/CRM.png" Width="40"/>
                     <TextBlock Text="CRM"/>
                 </StackPanel>
             </StackPanel>
@@ -62,7 +65,7 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-
+                    <Frame Name="frmMain" NavigationUIVisibility="Hidden"/>
                 </StackPanel>
                 <ListView Grid.Column="1">
 

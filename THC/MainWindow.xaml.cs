@@ -24,6 +24,7 @@ namespace THC
         {
             InitializeComponent();
             clasess.ClassBase.Base = new Entities();
+            clasess.ClassFrame.mainFrame = frmMain;
             cmbUsers.Items.Add("Выберите пользователя");
             List<TableUser> users = clasess.ClassBase.Base.TableUser.ToList();
             foreach(TableUser user in users)
@@ -50,6 +51,7 @@ namespace THC
             if(cmbUsers.SelectedIndex != 0)
             {
                 TableUser user = clasess.ClassBase.Base.TableUser.FirstOrDefault(x => x.UserID == cmbUsers.SelectedIndex);
+                clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
                 switch (user.UserRole)
                 {
                     case 1:
@@ -96,8 +98,13 @@ namespace THC
                         break;
                 }
 
-                //imUser.ImageSource = new BitmapImage(new Uri("pictures/" + user.UserPhoto, UriKind.Relative));
+                imUser.ImageSource = new BitmapImage(new Uri("../../pictures/" + user.UserPhoto, UriKind.Relative));
             }            
+        }
+
+        private void spAbon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
         }
     }
 }
