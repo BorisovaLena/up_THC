@@ -34,12 +34,17 @@
             </GroupBox>
         </Grid>
         <DataGrid Name="dgSubscribers" Grid.Row="1" Margin="10" FontSize="18" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Resources>
+                <Style TargetType="TextBlock" x:Key="WrapText">
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding SubscriberNomer}" Width="1*"></DataGridTextColumn>
-                <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}" Width="2*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Номер договора" Binding="{Binding ClientTreaty}" Width="2*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Лицевой счет" Binding="{Binding  Contracts.PersonalAccount}" Width="2*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Услуги" Binding="{Binding  ListServices}" Width="2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номер" Binding="{Binding ClientID}" Width="1.1*" ElementStyle="{StaticResource WrapText}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}" Width="2.5*" ElementStyle="{StaticResource WrapText}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номер договора" Binding="{Binding ClientTreaty}" Width="2*" ElementStyle="{StaticResource WrapText}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Лицевой счет" Binding="{Binding  TableTreaty.TreatyPersonalAccount}" Width="1.6*" ElementStyle="{StaticResource WrapText}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Услуги" Binding="{Binding  ClientServises}" Width="2*" ElementStyle="{StaticResource WrapText}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         

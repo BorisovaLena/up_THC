@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="pictures/image.ico"
         MinHeight="700" MinWidth="1200"
-        Title="MainWindow" Height="700" Width="1200">
+        Title="Телеком Нева Связь" Height="700" Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>

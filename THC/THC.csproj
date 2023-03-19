@@ -65,7 +65,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="clasess\ClassBase.cs" />
+    <Compile Include="clasess\ClassClient.cs" />
     <Compile Include="clasess\ClassFrame.cs" />
+    <Compile Include="clasess\ClassUser.cs" />
     <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
