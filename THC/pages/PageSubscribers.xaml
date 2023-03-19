@@ -34,7 +34,7 @@
                 <TextBox Name="tbSearchLCh" TextChanged="tbSearchSurname_TextChanged"/>
             </GroupBox>
         </Grid>
-        <DataGrid Name="dgSubscribers" Grid.Row="1" Margin="10" FontSize="18" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Name="dgSubscribers" Grid.Row="1" Margin="10" FontSize="18" AutoGenerateColumns="False" CanUserAddRows="False" Height="370">
             <DataGrid.Resources>
                 <Style TargetType="TextBlock" x:Key="WrapText">
                     <Setter Property="TextWrapping" Value="Wrap"/>
@@ -49,8 +49,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <CheckBox Name="cbActive" Content="Активные" Grid.Column="0" VerticalAlignment="Center" Margin="5" FontSize="18"/>
-            <CheckBox Name="cbNotActive" Content="Неактивные" Grid.Column="1" VerticalAlignment="Center" Margin="5" FontSize="18"/>
+            <CheckBox Name="cbActive" Content="Активные" Grid.Column="0" VerticalAlignment="Center" Margin="5" FontSize="18" Click="cbActive_Checked"/>
+            <CheckBox Name="cbNotActive" Content="Неактивные" Grid.Column="1" VerticalAlignment="Center" Margin="5" FontSize="18" Click="cbActive_Checked"/>
         </StackPanel>
         
     </Grid>

@@ -85,7 +85,22 @@ namespace THC.pages
                 listFilter = listFilter.Where(z => z.TableAddress.TableStreet.StreetName + ", " + z.TableAddress.AddressHouse == cmbSearchStreet.SelectedValue.ToString()).ToList();
             }
 
+            if(cbActive.IsChecked==true && cbNotActive.IsChecked==false)
+            {
+                listFilter = listFilter.Where(z => z.TableTreaty.TreatyTerminationDate == null).ToList();
+            }
+
+            if (cbActive.IsChecked == false && cbNotActive.IsChecked == true)
+            {
+                listFilter = listFilter.Where(z => z.TableTreaty.TreatyTerminationDate != null).ToList();
+            }
+
             dgSubscribers.ItemsSource = listFilter;
+        }
+
+        private void cbActive_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
         }
     }
 }
