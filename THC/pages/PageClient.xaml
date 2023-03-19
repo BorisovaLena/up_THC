@@ -44,9 +44,6 @@
             <GroupBox Header="Подключенные услуги">
                 <TextBlock Name="tbServices"/>
             </GroupBox>
-            <GroupBox Header="Данные об оборудовании">
-                <TextBlock Name="tbData"/>
-            </GroupBox>
         </StackPanel>
         
     </Grid>

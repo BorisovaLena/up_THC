@@ -32,8 +32,17 @@ namespace THC.pages
             tbNumberTreaty.Text = "Номер договора: " + client.TableTreaty.TreatyNumber;
             tbDateTreaty.Text = "Дата заключения: " + client.TableTreaty.TreatyDateСonclusion;
             tbTypeTreaty.Text = "Тип договора: " + client.TableTreaty.TreatyType;
-            tbDateTTreaty.Text = "Дата расторжения: " + client.TableTreaty.TreatyTerminationDate;
-            tbDateTPTreaty.Text = "Причина расторжения: " + client.TableTreaty.TreatyReasonForTermination;
+            if(client.TableTreaty.TreatyTerminationDate!=null)
+            {
+                tbDateTTreaty.Text = "Дата расторжения: " + client.TableTreaty.TreatyTerminationDate;
+                tbDateTPTreaty.Text = "Причина расторжения: " + client.TableTreaty.TreatyReasonForTermination;
+            }
+            else
+            {
+                tbDateTTreaty.Visibility = Visibility.Collapsed;
+                tbDateTPTreaty.Visibility = Visibility.Collapsed;
+            }
+            
             tbPersonalAccount.Text = "Лицевой счет: " + client.TableTreaty.TreatyPersonalAccount;
             if(client.TableAddress1.TableStreet.StreetName != null)
             {
@@ -57,6 +66,14 @@ namespace THC.pages
             {
                 tbAddress.Text = client.TableAddress1.TableDistrict.DistrictName;
             }
+            List<TableServiceTreaty> tableServiceTreaties = clasess.ClassBase.Base.TableServiceTreaty.Where(z => z.ServiceTreatyTreatyID == TableTreaty.TreatyNumber).ToList();
+            string str = "";
+            foreach (TableServiceTreaty treaty in tableServiceTreaties)
+            {
+                str += treaty.TableService.ServiceName + ", ";
+            }
+            str = str.Substring(0, str.Length - 2);
+            tbServices.Text = str;
             
         }
     }
