@@ -1,0 +1,53 @@
+﻿<Page x:Class="THC.pages.PageClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:THC.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageClient">
+
+    <Grid>
+        <StackPanel>
+            <GroupBox Header="Номер абонента">
+                <TextBlock Name="tbNumberClient"/>
+            </GroupBox>
+            <GroupBox Header="ФИО">
+                <TextBlock Name="tbFIO"/>
+            </GroupBox>
+            <GroupBox Header="Данные паспорта">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Name="tbSeria"/>
+                        <TextBlock Name="tbNuber"/>
+                    </StackPanel>
+                    <TextBlock Name="tbDate"/>
+                    <TextBlock Name="tbVidan"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Данные договора">
+                <StackPanel>
+                    <TextBlock Name="tbNumberTreaty"/>
+                    <TextBlock Name="tbDateTreaty"/>
+                    <TextBlock Name="tbTypeTreaty"/>
+                    <TextBlock Name="tbDateTTreaty"/>
+                    <TextBlock Name="tbDateTPTreaty"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Лицевой счет">
+                <TextBlock Name="tbPersonalAccount"/>
+            </GroupBox>
+            <GroupBox Header="Адрес">
+                <TextBlock Name="tbAddress"/>
+            </GroupBox>
+            <GroupBox Header="Подключенные услуги">
+                <TextBlock Name="tbServices"/>
+            </GroupBox>
+            <GroupBox Header="Данные об оборудовании">
+                <TextBlock Name="tbData"/>
+            </GroupBox>
+        </StackPanel>
+        
+    </Grid>
+</Page>

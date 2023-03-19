@@ -34,7 +34,7 @@
                 <TextBox Name="tbSearchLCh" TextChanged="tbSearchSurname_TextChanged"/>
             </GroupBox>
         </Grid>
-        <DataGrid Name="dgSubscribers" Grid.Row="1" Margin="10" FontSize="18" AutoGenerateColumns="False" CanUserAddRows="False" Height="370">
+        <DataGrid Name="dgSubscribers" Grid.Row="1" Margin="10" FontSize="18" AutoGenerateColumns="False" CanUserAddRows="False" Height="370" MouseDoubleClick="dgSubscribers_MouseDoubleClick">
             <DataGrid.Resources>
                 <Style TargetType="TextBlock" x:Key="WrapText">
                     <Setter Property="TextWrapping" Value="Wrap"/>
