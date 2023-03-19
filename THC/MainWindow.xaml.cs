@@ -23,7 +23,7 @@ namespace THC
         public MainWindow()
         {
             InitializeComponent();
-            clasess.ClassBase.Base = new Entities();
+            clasess.ClassBase.Base = new Entities1();
             clasess.ClassFrame.mainFrame = frmMain;
             cmbUsers.Items.Add("Выберите пользователя");
             List<TableUser> users = clasess.ClassBase.Base.TableUser.ToList();

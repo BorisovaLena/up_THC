@@ -8,6 +8,6 @@ namespace THC.clasess
 {
     internal class ClassBase
     {
-        public static Entities Base;
+        public static Entities1 Base;
     }
 }

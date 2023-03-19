@@ -75,10 +75,17 @@ namespace THC.pages
                 listFilter = listFilter.Where(z => z.TableTreaty.TreatyPersonalAccount.ToString().ToLower().Contains(tbSearchLCh.Text.ToLower())).ToList();
             }
 
-            if(cmbSearchDistrict.SelectedIndex!=0)
+            if(cmbSearchDistrict.SelectedIndex>0)
             {
-                listFilter = listFilter.Where(z => z.TableAddress.TableDistrict.DistrictName == cmbSearchDistrict.SelectedItem.ToString()).ToList();
+                listFilter = listFilter.Where(z => z.TableAddress1.TableDistrict.DistrictName == (string)cmbSearchDistrict.SelectedValue).ToList();
             }
+
+            if(cmbSearchStreet.SelectedIndex>0)
+            {
+                listFilter = listFilter.Where(z => z.TableAddress.TableStreet.StreetName + ", " + z.TableAddress.AddressHouse == cmbSearchStreet.SelectedValue.ToString()).ToList();
+            }
+
+            dgSubscribers.ItemsSource = listFilter;
         }
     }
 }
