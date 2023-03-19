@@ -52,12 +52,15 @@ namespace THC
             {
                 TableUser user = clasess.ClassBase.Base.TableUser.FirstOrDefault(x => x.UserID == cmbUsers.SelectedIndex);
                 clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
+                spAbon.Background = (Brush)new BrushConverter().ConvertFrom("#B5DEFA");
+                List<TableInformation> events = clasess.ClassBase.Base.TableInformation.Where(z => z.InformationRole == user.UserRole).ToList();
+                lvEvents.ItemsSource = events;
                 switch (user.UserRole)
                 {
                     case 1:
                         spBill.Visibility = Visibility.Visible;
                         spCRM.Visibility = Visibility.Visible;
-                        spAbon.Visibility = Visibility.Visible;
+                        spAbon.Visibility = Visibility.Visible;   
                         break;
                     case 2:
                         spCRM.Visibility = Visibility.Visible;
@@ -104,6 +107,7 @@ namespace THC
 
         private void spAbon_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            spAbon.Background = (Brush)new BrushConverter().ConvertFrom("#B5DEFA");
             clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
         }
     }

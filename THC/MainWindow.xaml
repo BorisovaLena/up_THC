@@ -6,69 +6,95 @@
         xmlns:local="clr-namespace:THC"
         mc:Ignorable="d"
         Icon="pictures/image.ico"
-        MinHeight="600" MinWidth="900"
-        Title="MainWindow" Height="600" Width="900">
+        MinHeight="650" MinWidth="900"
+        Title="MainWindow" Height="700" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
             <StackPanel>
-                <Image Source="pictures/Лого ТНС.jpg"/>
-                <StackPanel Name="spAbon" MouseDown="spAbon_MouseDown" HorizontalAlignment="Center">
-                    <Image Source="pictures/Абоненты.png" Width="60"/>
-                    <TextBlock Text="Абоненты"/>
+                <Image Source="pictures/Лого ТНС.jpg" Width="100"/>
+                <StackPanel Width="130" Name="spAbon" MouseDown="spAbon_MouseDown" >
+                    <Image Source="pictures/Абоненты.png" Width="70"/>
+                    <TextBlock Text="Абоненты" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Name="spUO" HorizontalAlignment="Center">
-                    <Image Source="pictures/Управление обрудованием.png" Width="50"/>
+                <StackPanel Width="130" Name="spUO">
+                    <Image Source="pictures/Управление обрудованием.png" Width="60"/>
                     <TextBlock Text="Управление" HorizontalAlignment="Center"/>
-                    <TextBlock Text="оборудаванием"/>
+                    <TextBlock Text="оборудаванием" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Name="spActive" HorizontalAlignment="Center">
-                    <Image Source="pictures/Активы.png" Width="40"/>
+                <StackPanel Width="130" Name="spActive">
+                    <Image Source="pictures/Активы.png" Width="50"/>
                     <TextBlock Text="Активы" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Name="spBill" HorizontalAlignment="Center">
-                    <Image Source="pictures/Биллинг.png" Width="40"/>
-                    <TextBlock Text="Биллинг"/>
+                <StackPanel Width="130" Name="spBill" >
+                    <Image Source="pictures/Биллинг.png" Width="50"/>
+                    <TextBlock Text="Биллинг" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Name="spPP" HorizontalAlignment="Center">
-                    <Image Source="pictures/Поддержка пользователей.png" Width="50"/>
+                <StackPanel Width="130" Name="spPP">
+                    <Image Source="pictures/Поддержка пользователей.png" Width="60"/>
                     <TextBlock Text="Поддержка" HorizontalAlignment="Center"/>
-                    <TextBlock Text="пользователей"/>
+                    <TextBlock Text="пользователей" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Name="spCRM" HorizontalAlignment="Center">
-                    <Image Source="pictures/CRM.png" Width="40"/>
-                    <TextBlock Text="CRM"/>
+                <StackPanel Width="130" Name="spCRM">
+                    <Image Source="pictures/CRM.png" Width="50"/>
+                    <TextBlock Text="CRM" HorizontalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,-1,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBlock Text="Абоненты ТНС" FontSize="30"/>
-                <ComboBox Name="cmbUsers" Width="250" Height="40" SelectionChanged="cmbUsers_SelectionChanged"/>
-                <Rectangle RadiusX="100" RadiusY="100" Height="60" Width="60" Margin="5, 0, 0, 0">
-                    <Rectangle.Fill>
-                        <ImageBrush x:Name="imUser" Stretch="UniformToFill"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-            </StackPanel>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Text="Абоненты ТНС" FontSize="40" FontWeight="Bold" Margin="30,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <ComboBox Name="cmbUsers" Width="320" Height="30" SelectionChanged="cmbUsers_SelectionChanged" FontSize="18"/>
+                        <Rectangle RadiusX="100" RadiusY="100" Height="60" Width="60" Margin="20,0,20,0">
+                            <Rectangle.Fill>
+                                <ImageBrush x:Name="imUser" Stretch="UniformToFill"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="События" HorizontalAlignment="Right" Margin="0,0,35,0" FontSize="30" VerticalAlignment="Bottom"/>
+                </StackPanel>
+            </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                     <Frame Name="frmMain" NavigationUIVisibility="Hidden"/>
                 </StackPanel>
-                <ListView Grid.Column="1">
-
+                <ListView Grid.Column="1" Name="lvEvents" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="0,0,0,2">
+                                <Grid Background="#B5DEFA" Width="170">
+                                    <TextBlock Text="{Binding InformationText}" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
 
 

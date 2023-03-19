@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:THC"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
          
     </Application.Resources>
 </Application>
