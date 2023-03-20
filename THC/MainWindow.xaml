@@ -38,7 +38,7 @@
                     <TextBlock Text="Поддержка" HorizontalAlignment="Center"/>
                     <TextBlock Text="пользователей" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Width="130" Name="spCRM">
+                <StackPanel Width="130" Name="spCRM" MouseDown="spCRM_MouseDown">
                     <Image Source="pictures/CRM.png" Width="50"/>
                     <TextBlock Text="CRM" HorizontalAlignment="Center"/>
                 </StackPanel>
@@ -60,7 +60,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                        <TextBlock Text="Абоненты ТНС" FontSize="40" FontWeight="Bold" Margin="30,0,0,0"/>
+                        <TextBlock Name="tbTitle" FontSize="40" FontWeight="Bold" Margin="30,0,0,0"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                         <ComboBox Name="cmbUsers" Width="320" Height="30" SelectionChanged="cmbUsers_SelectionChanged" FontSize="18"/>

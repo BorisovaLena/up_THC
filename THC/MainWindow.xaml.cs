@@ -53,6 +53,7 @@ namespace THC
                 TableUser user = clasess.ClassBase.Base.TableUser.FirstOrDefault(x => x.UserID == cmbUsers.SelectedIndex);
                 clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
                 spAbon.Background = (Brush)new BrushConverter().ConvertFrom("#B5DEFA");
+                tbTitle.Text = "Абоненты ТНС";
                 List<TableInformation> events = clasess.ClassBase.Base.TableInformation.Where(z => z.InformationRole == user.UserRole).ToList();
                 lvEvents.ItemsSource = events;
                 switch (user.UserRole)
@@ -107,7 +108,17 @@ namespace THC
         private void spAbon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             spAbon.Background = (Brush)new BrushConverter().ConvertFrom("#B5DEFA");
+            tbTitle.Text = "Абоненты ТНС";
+            spCRM.Background = Brushes.White;
             clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
+        }
+
+        private void spCRM_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            spCRM.Background = (Brush)new BrushConverter().ConvertFrom("#B5DEFA");
+            spAbon.Background = Brushes.White;
+            tbTitle.Text = "CRM";
+            clasess.ClassFrame.mainFrame.Navigate(new pages.PageApplication());
         }
     }
 }

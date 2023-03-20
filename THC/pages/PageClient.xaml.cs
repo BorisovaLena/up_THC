@@ -65,16 +65,7 @@ namespace THC.pages
             else
             {
                 tbAddress.Text = client.TableAddress1.TableDistrict.DistrictName;
-            }
-            List<TableServiceTreaty> tableServiceTreaties = clasess.ClassBase.Base.TableServiceTreaty.Where(z => z.ServiceTreatyTreatyID == TableTreaty.TreatyNumber).ToList();
-            string str = "";
-            foreach (TableServiceTreaty treaty in tableServiceTreaties)
-            {
-                str += treaty.TableService.ServiceName + ", ";
-            }
-            str = str.Substring(0, str.Length - 2);
-            tbServices.Text = str;
-            
+            }            
         }
     }
 }

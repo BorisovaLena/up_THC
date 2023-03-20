@@ -42,7 +42,7 @@
                 <TextBlock Name="tbAddress"/>
             </GroupBox>
             <GroupBox Header="Подключенные услуги">
-                <TextBlock Name="tbServices"/>
+                <TextBlock Name="tbServices" Text="{Binding ClientServises}"/>
             </GroupBox>
         </StackPanel>
         
