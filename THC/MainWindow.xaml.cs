@@ -32,7 +32,10 @@ namespace THC
                 cmbUsers.Items.Add(user.UserSurname+ " "+user.UserName+" "+user.UserPatronymic);
             }
             cmbUsers.SelectedIndex = 0;
-            spAbon.Visibility = Visibility.Collapsed;
+            spAbon.Visibility = Visibility.Visible;
+            spAbon.Background = (Brush)new BrushConverter().ConvertFrom("#B5DEFA");
+            clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
+            tbTitle.Text = "Абоненты ТНС";
             spActive.Visibility = Visibility.Collapsed;
             spBill.Visibility = Visibility.Collapsed;
             spCRM.Visibility = Visibility.Collapsed;
