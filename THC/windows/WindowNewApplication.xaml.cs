@@ -62,20 +62,31 @@ namespace THC.windows
 
         private void btnsave_Click(object sender, RoutedEventArgs e)
         {
-            TableApplication application = new TableApplication()
+            if(cmbServices.SelectedIndex!=0 && cmbServicesType.SelectedIndex!=0 && cmbServicesVid.SelectedIndex!=0 && cmbTypeProblem.SelectedIndex!=0)
             {
-                ApplicationNumber = tbNumberAppl.Text,
-                ApplicationDate = (DateTime)dpDate.SelectedDate,
-                ApplicationPersonalAccount = Convert.ToInt32(tbNumberLC.Text),
-                ApplicationService = cmbServices.SelectedIndex,
-                ApplicationServiceType = cmbServicesType.SelectedIndex,
-                ApplicationVid = cmbServicesVid.SelectedIndex,
-                ApplicationServiceStatus = cmbStatus.SelectedIndex + 1,
-                ApplicationTypeEquipment = tbTypeEq.Text,
-                ApplicationProblem = tbProblemDiscr.Text,
-                ApplicationDateClosing = dpDateClosing.SelectedDate,
-                ApplicationTypeProblem = cmbTypeProblem.SelectedIndex
-            };
+                TableApplication application = new TableApplication()
+                {
+                    ApplicationNumber = tbNumberAppl.Text,
+                    ApplicationDate = (DateTime)dpDate.SelectedDate,
+                    ApplicationPersonalAccount = Convert.ToInt32(tbNumberLC.Text),
+                    ApplicationService = cmbServices.SelectedIndex,
+                    ApplicationServiceType = cmbServicesType.SelectedIndex,
+                    ApplicationVid = cmbServicesVid.SelectedIndex,
+                    ApplicationServiceStatus = cmbStatus.SelectedIndex + 1,
+                    ApplicationTypeEquipment = tbTypeEq.Text,
+                    ApplicationProblem = tbProblemDiscr.Text,
+                    ApplicationDateClosing = dpDateClosing.SelectedDate,
+                    ApplicationTypeProblem = cmbTypeProblem.SelectedIndex
+                };
+                clasess.ClassBase.Base.TableApplication.Add(application);
+                clasess.ClassBase.Base.SaveChanges();
+                MessageBox.Show("Заявка создана!!!");
+            }
+            else
+            {
+                MessageBox.Show("Введите все данные!!!");
+            }
+            
         }
 
         private void cmbServicesVid_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -49,7 +49,7 @@
           <Property Name="ApplicationVid" Type="int" Nullable="false" />
           <Property Name="ApplicationServiceStatus" Type="int" Nullable="false" />
           <Property Name="ApplicationTypeEquipment" Type="nvarchar(max)" />
-          <Property Name="ApplicationProblem" Type="int" />
+          <Property Name="ApplicationProblem" Type="nvarchar(max)" />
           <Property Name="ApplicationDateClosing" Type="datetime" />
           <Property Name="ApplicationTypeProblem" Type="int" Nullable="false" />
         </EntityType>
@@ -136,13 +136,6 @@
           <Property Name="PassportCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PassportIssued" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PassportDateIssued" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TableProblem">
-          <Key>
-            <PropertyRef Name="ProblemID" />
-          </Key>
-          <Property Name="ProblemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProblemText" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="TableProblemType">
           <Key>
@@ -293,18 +286,6 @@
             </Principal>
             <Dependent Role="TableApplication">
               <PropertyRef Name="ApplicationServiceType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TableApplication_TableProblem">
-          <End Role="TableProblem" Type="Self.TableProblem" Multiplicity="0..1" />
-          <End Role="TableApplication" Type="Self.TableApplication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TableProblem">
-              <PropertyRef Name="ProblemID" />
-            </Principal>
-            <Dependent Role="TableApplication">
-              <PropertyRef Name="ApplicationProblem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -526,7 +507,6 @@
           <EntitySet Name="TableGender" EntityType="Self.TableGender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TableInformation" EntityType="Self.TableInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TablePassport" EntityType="Self.TablePassport" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TableProblem" EntityType="Self.TableProblem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TableProblemType" EntityType="Self.TableProblemType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TableService" EntityType="Self.TableService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TableServiceStatus" EntityType="Self.TableServiceStatus" Schema="dbo" store:Type="Tables" />
@@ -559,10 +539,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_TableApplication_ServiceType" Association="Self.FK_TableApplication_ServiceType">
             <End Role="TableServiceType" EntitySet="TableServiceType" />
-            <End Role="TableApplication" EntitySet="TableApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableApplication_TableProblem" Association="Self.FK_TableApplication_TableProblem">
-            <End Role="TableProblem" EntitySet="TableProblem" />
             <End Role="TableApplication" EntitySet="TableApplication" />
           </AssociationSet>
           <AssociationSet Name="FK_TableApplication_TableProblemType" Association="Self.FK_TableApplication_TableProblemType">
@@ -652,7 +628,6 @@
           <EntitySet Name="TableGender" EntityType="CRM1Model.TableGender" />
           <EntitySet Name="TableInformation" EntityType="CRM1Model.TableInformation" />
           <EntitySet Name="TablePassport" EntityType="CRM1Model.TablePassport" />
-          <EntitySet Name="TableProblem" EntityType="CRM1Model.TableProblem" />
           <EntitySet Name="TableProblemType" EntityType="CRM1Model.TableProblemType" />
           <EntitySet Name="TableService" EntityType="CRM1Model.TableService" />
           <EntitySet Name="TableServiceStatus" EntityType="CRM1Model.TableServiceStatus" />
@@ -701,10 +676,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_TableApplication_ServiceType" Association="CRM1Model.FK_TableApplication_ServiceType">
             <End Role="TableServiceType" EntitySet="TableServiceType" />
-            <End Role="TableApplication" EntitySet="TableApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TableApplication_TableProblem" Association="CRM1Model.FK_TableApplication_TableProblem">
-            <End Role="TableProblem" EntitySet="TableProblem" />
             <End Role="TableApplication" EntitySet="TableApplication" />
           </AssociationSet>
           <AssociationSet Name="FK_TableApplication_TableProblemType" Association="CRM1Model.FK_TableApplication_TableProblemType">
@@ -814,11 +785,10 @@
           <Property Name="ApplicationVid" Type="Int32" Nullable="false" />
           <Property Name="ApplicationServiceStatus" Type="Int32" Nullable="false" />
           <Property Name="ApplicationTypeEquipment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ApplicationProblem" Type="Int32" />
+          <Property Name="ApplicationProblem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ApplicationDateClosing" Type="DateTime" Precision="3" />
           <Property Name="ApplicationTypeProblem" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TableServiceType" Relationship="CRM1Model.FK_TableApplication_ServiceType" FromRole="TableApplication" ToRole="TableServiceType" />
-          <NavigationProperty Name="TableProblem" Relationship="CRM1Model.FK_TableApplication_TableProblem" FromRole="TableApplication" ToRole="TableProblem" />
           <NavigationProperty Name="TableProblemType" Relationship="CRM1Model.FK_TableApplication_TableProblemType" FromRole="TableApplication" ToRole="TableProblemType" />
           <NavigationProperty Name="TableService" Relationship="CRM1Model.FK_TableApplication_TableService" FromRole="TableApplication" ToRole="TableService" />
           <NavigationProperty Name="TableServiceStatus" Relationship="CRM1Model.FK_TableApplication_TableServiceStatus" FromRole="TableApplication" ToRole="TableServiceStatus" />
@@ -922,14 +892,6 @@
           <Property Name="PassportIssued" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PassportDateIssued" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="TableClient" Relationship="CRM1Model.FK_TableClient_TablePassport" FromRole="TablePassport" ToRole="TableClient" />
-        </EntityType>
-        <EntityType Name="TableProblem">
-          <Key>
-            <PropertyRef Name="ProblemID" />
-          </Key>
-          <Property Name="ProblemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProblemText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TableApplication" Relationship="CRM1Model.FK_TableApplication_TableProblem" FromRole="TableProblem" ToRole="TableApplication" />
         </EntityType>
         <EntityType Name="TableProblemType">
           <Key>
@@ -1147,18 +1109,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TableApplication_TableProblem">
-          <End Type="CRM1Model.TableProblem" Role="TableProblem" Multiplicity="0..1" />
-          <End Type="CRM1Model.TableApplication" Role="TableApplication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TableProblem">
-              <PropertyRef Name="ProblemID" />
-            </Principal>
-            <Dependent Role="TableApplication">
-              <PropertyRef Name="ApplicationProblem" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TableApplication_TableProblemType">
           <End Type="CRM1Model.TableProblemType" Role="TableProblemType" Multiplicity="1" />
           <End Type="CRM1Model.TableApplication" Role="TableApplication" Multiplicity="*" />
@@ -1315,7 +1265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1463,14 +1413,6 @@
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TableProblem">
-            <EntityTypeMapping TypeName="CRM1Model.TableProblem">
-              <MappingFragment StoreEntitySet="TableProblem">
-                <ScalarProperty Name="ProblemText" ColumnName="ProblemText" />
-                <ScalarProperty Name="ProblemID" ColumnName="ProblemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

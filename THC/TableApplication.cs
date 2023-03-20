@@ -22,12 +22,11 @@ namespace THC
         public int ApplicationVid { get; set; }
         public int ApplicationServiceStatus { get; set; }
         public string ApplicationTypeEquipment { get; set; }
-        public Nullable<int> ApplicationProblem { get; set; }
+        public string ApplicationProblem { get; set; }
         public Nullable<System.DateTime> ApplicationDateClosing { get; set; }
         public int ApplicationTypeProblem { get; set; }
     
         public virtual TableServiceType TableServiceType { get; set; }
-        public virtual TableProblem TableProblem { get; set; }
         public virtual TableProblemType TableProblemType { get; set; }
         public virtual TableService TableService { get; set; }
         public virtual TableServiceStatus TableServiceStatus { get; set; }

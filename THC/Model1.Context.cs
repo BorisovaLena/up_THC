@@ -38,7 +38,6 @@ namespace THC
         public virtual DbSet<TableGender> TableGender { get; set; }
         public virtual DbSet<TableInformation> TableInformation { get; set; }
         public virtual DbSet<TablePassport> TablePassport { get; set; }
-        public virtual DbSet<TableProblem> TableProblem { get; set; }
         public virtual DbSet<TableProblemType> TableProblemType { get; set; }
         public virtual DbSet<TableService> TableService { get; set; }
         public virtual DbSet<TableServiceStatus> TableServiceStatus { get; set; }
