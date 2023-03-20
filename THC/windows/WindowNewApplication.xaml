@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="WindowNewApplication" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel>
+            <TextBlock Text="Новая заявка"/>
+            <TextBlock Name="tbNumberAppl"/>
+            <DatePicker Name="dpDate"/>
+            <TextBlock Name="tbNumberClient"/>
+            <TextBlock Name="tbNumberLC"/>
+            <ComboBox Name="cmbServices"/>
+            <ComboBox Name="cmbServicesVid"/>
+            <ComboBox Name="cmbServicesType"/>
+            <ComboBox Name="cmbStatus"/>
+            <TextBlock Name="tbTypeEq"/>
+            <ComboBox Name="cmbTypeProblem"/>
+            <TextBlock Name="tbProblemDiscr"/>
+            <DatePicker Name="dpDateClosing"/>
+            <Button Name="btnsave" Content="Сохранить" Click="btnsave_Click"/>
+        </StackPanel>
+
     </Grid>
 </Window>

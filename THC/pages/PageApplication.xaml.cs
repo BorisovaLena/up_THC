@@ -20,6 +20,7 @@ namespace THC.pages
     /// </summary>
     public partial class PageApplication : Page
     {
+        TableClient client;
         public PageApplication()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace THC.pages
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-            TableClient client = clasess.ClassBase.Base.TableClient.FirstOrDefault(z => z.ClientNumberPhone == tbNumberPhone.Text);
+            client = clasess.ClassBase.Base.TableClient.FirstOrDefault(z => z.ClientNumberPhone == tbNumberPhone.Text);
             if(client==null)
             {
                 MessageBox.Show("Нет пользователя с таким номером телефона!!!");
@@ -48,7 +49,7 @@ namespace THC.pages
 
         private void btnAddApplication_Click(object sender, RoutedEventArgs e)
         {
-            windows.WindowNewApplication window = new windows.WindowNewApplication();
+            windows.WindowNewApplication window = new windows.WindowNewApplication(client);
             window.ShowDialog();
         }
     }
