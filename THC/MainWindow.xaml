@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:THC"
         mc:Ignorable="d"
-        Icon="pictures/image.ico"
+        Icon="/pictures/image.ico"
         MinHeight="700" MinWidth="1200"
         Title="Телеком Нева Связь" Height="700" Width="1200">
     <Grid>

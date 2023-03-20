@@ -12,6 +12,10 @@
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="18"/>
         </Style>
+        
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
 
     </Application.Resources>
 </Application>

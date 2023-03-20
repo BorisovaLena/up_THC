@@ -5,24 +5,119 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:THC.windows"
         mc:Ignorable="d"
-        Title="WindowNewApplication" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
-            <TextBlock Text="Новая заявка"/>
-            <TextBlock Name="tbNumberAppl"/>
-            <DatePicker Name="dpDate"/>
-            <TextBlock Name="tbNumberClient"/>
-            <TextBlock Name="tbNumberLC"/>
-            <ComboBox Name="cmbServices"/>
-            <ComboBox Name="cmbServicesVid"/>
-            <ComboBox Name="cmbServicesType"/>
-            <ComboBox Name="cmbStatus"/>
-            <TextBlock Name="tbTypeEq"/>
-            <ComboBox Name="cmbTypeProblem"/>
-            <TextBlock Name="tbProblemDiscr"/>
-            <DatePicker Name="dpDateClosing"/>
-            <Button Name="btnsave" Content="Сохранить" Click="btnsave_Click"/>
-        </StackPanel>
+        Icon="/pictures/image.ico"
+        MinHeight="500" MinWidth="850"
+        Title="Заявка" Height="500" Width="850">
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Новая заявка" HorizontalAlignment="Center" FontSize="30"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <GroupBox Header="Номер заявки">
+                        <TextBlock Name="tbNumberAppl"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <GroupBox Header="Дата составления">
+                        <DatePicker Name="dpDate" FontSize="18"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <GroupBox Header="Статус заявки">
+                        <ComboBox Name="cmbStatus"/>
+                    </GroupBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <GroupBox Header="Номер клиента">
+                        <TextBlock Name="tbNumberClient"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <GroupBox Header="Лицевой счет">
+                        <TextBlock Name="tbNumberLC"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <GroupBox Header="Оборудование">
+                        <TextBlock Name="tbTypeEq"/>
+                    </GroupBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <GroupBox Header="Услуга">
+                        <ComboBox Name="cmbServices"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <GroupBox Header="Вид услуги">
+                        <ComboBox Name="cmbServicesVid" SelectionChanged="cmbServicesVid_SelectionChanged"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <GroupBox Header="Тип услуги">
+                        <ComboBox Name="cmbServicesType"/>
+                    </GroupBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <GroupBox Header="Тип проблемы">
+                        <ComboBox Name="cmbTypeProblem"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <GroupBox Header="Описание проблемы">
+                        <TextBox Name="tbProblemDiscr" TextWrapping="Wrap"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <GroupBox Header="Дата закрытия">
+                        <DatePicker Name="dpDateClosing" FontSize="18"/>
+                    </GroupBox>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="2">
+            <Button Name="btnsave" Content="Сохранить" Click="btnsave_Click"/>
+            <Button Name="btnTest" Content="Протестировать" Click="btnTest_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
