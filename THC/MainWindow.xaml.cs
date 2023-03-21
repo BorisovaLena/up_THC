@@ -25,6 +25,7 @@ namespace THC
             InitializeComponent();
             clasess.ClassBase.Base = new Entities1();
             clasess.ClassFrame.mainFrame = frmMain;
+
             cmbUsers.Items.Add("Выберите пользователя");
             List<TableUser> users = clasess.ClassBase.Base.TableUser.ToList();
             foreach(TableUser user in users)
@@ -32,10 +33,12 @@ namespace THC
                 cmbUsers.Items.Add(user.UserSurname+ " "+user.UserName+" "+user.UserPatronymic);
             }
             cmbUsers.SelectedIndex = 0;
+
             spAbon.Visibility = Visibility.Visible;
             spAbon.Background = (Brush)new BrushConverter().ConvertFrom("#B5DEFA");
             clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
             tbTitle.Text = "Абоненты ТНС";
+
             spActive.Visibility = Visibility.Collapsed;
             spBill.Visibility = Visibility.Collapsed;
             spCRM.Visibility = Visibility.Collapsed;
@@ -57,7 +60,8 @@ namespace THC
                 clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
                 spAbon.Background = (Brush)new BrushConverter().ConvertFrom("#B5DEFA");
                 tbTitle.Text = "Абоненты ТНС";
-                List<TableInformation> events = clasess.ClassBase.Base.TableInformation.Where(z => z.InformationRole == user.UserRole).ToList();
+                DateTime dt = DateTime.Now.Date;
+                List<TableInformation> events = clasess.ClassBase.Base.TableInformation.Where(z => z.InformationRole == user.UserRole && z.InformationDate == dt).ToList();
                 lvEvents.ItemsSource = events;
                 switch (user.UserRole)
                 {
