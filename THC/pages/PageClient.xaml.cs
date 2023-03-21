@@ -31,7 +31,7 @@ namespace THC.pages
             tbVidan.Text = "Кем выдан: " + client.TablePassport.PassportIssued;
             tbNumberTreaty.Text = "Номер договора: " + client.TableTreaty.TreatyNumber;
             tbDateTreaty.Text = "Дата заключения: " + client.TableTreaty.TreatyDateСonclusion;
-            tbTypeTreaty.Text = "Тип договора: " + client.TableTreaty.TreatyType;
+            tbTypeTreaty.Text = "Тип договора: " + client.TableTreaty.TableTypeTreaty.TypeTreatyName;
             if(client.TableTreaty.TreatyTerminationDate!=null)
             {
                 tbDateTTreaty.Text = "Дата расторжения: " + client.TableTreaty.TreatyTerminationDate;
@@ -43,7 +43,7 @@ namespace THC.pages
                 tbDateTPTreaty.Visibility = Visibility.Collapsed;
             }
             
-            tbPersonalAccount.Text = "Лицевой счет: " + client.TableTreaty.TreatyPersonalAccount;
+            tbPersonalAccount.Text = ""+client.TableTreaty.TreatyPersonalAccount;
             if(client.TableAddress1.TableStreet.StreetName != null)
             {
                 if(client.TableAddress1.AddressHouse!=null)
@@ -65,7 +65,14 @@ namespace THC.pages
             else
             {
                 tbAddress.Text = client.TableAddress1.TableDistrict.DistrictName;
-            }            
+            }
+
+            tbServices.Text = client.ClientServises;
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
         }
     }
 }

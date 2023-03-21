@@ -107,27 +107,17 @@ namespace THC.pages
 
         private void dgSubscribers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            try
+
+            TableClient client = new TableClient();
+            foreach(TableClient client1 in dgSubscribers.SelectedItems)
             {
-                TableClient client = new TableClient();
-                foreach(TableClient client1 in dgSubscribers.SelectedItems)
-                {
-                    client = client1;
-                }
-                if(client==null)
-                {
-                    return;
-                }
-                else
-                {
-                    clasess.ClassFrame.mainFrame.Navigate(client);
-                }
-                
+                client = client1;
             }
-            catch
+
+            if (client != null)
             {
-                MessageBox.Show("Нажмите на 1 объект!!!");
-            }
+                clasess.ClassFrame.mainFrame.Navigate(new pages.PageClient(client));
+            }  
         }
     }
 }

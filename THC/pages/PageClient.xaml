@@ -10,13 +10,19 @@
 
     <Grid>
         <StackPanel>
-            <GroupBox Header="Номер абонента">
-                <TextBlock Name="tbNumberClient"/>
-            </GroupBox>
-            <GroupBox Header="ФИО">
-                <TextBlock Name="tbFIO"/>
-            </GroupBox>
-            <GroupBox Header="Данные паспорта">
+            <StackPanel Orientation="Horizontal" Width="700">
+                <GroupBox Header="Номер абонента" Width="200">
+                    <TextBlock Name="tbNumberClient" />
+                </GroupBox>
+                <GroupBox Header="ФИО" Width="300">
+                    <TextBlock Name="tbFIO"/>
+                </GroupBox>
+                <GroupBox Header="Лицевой счет" Width="200">
+                    <TextBlock Name="tbPersonalAccount"/>
+                </GroupBox>
+            </StackPanel>
+           
+            <GroupBox Header="Данные паспорта" HorizontalAlignment="Center" Width="700">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Name="tbSeria"/>
@@ -26,7 +32,7 @@
                     <TextBlock Name="tbVidan"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Данные договора">
+            <GroupBox Header="Данные договора" HorizontalAlignment="Center" Width="700">
                 <StackPanel>
                     <TextBlock Name="tbNumberTreaty"/>
                     <TextBlock Name="tbDateTreaty"/>
@@ -35,15 +41,14 @@
                     <TextBlock Name="tbDateTPTreaty"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Лицевой счет">
-                <TextBlock Name="tbPersonalAccount"/>
-            </GroupBox>
-            <GroupBox Header="Адрес">
+
+            <GroupBox Header="Адрес"  HorizontalAlignment="Center" Width="700">
                 <TextBlock Name="tbAddress"/>
             </GroupBox>
-            <GroupBox Header="Подключенные услуги">
+            <GroupBox Header="Подключенные услуги"  HorizontalAlignment="Center" Width="700">
                 <TextBlock Name="tbServices" Text="{Binding ClientServises}"/>
             </GroupBox>
+            <Button Name="btnBack" Content="Вернуться" Background="#B5DEFA" Width="500" Click="btnBack_Click"/>
         </StackPanel>
         
     </Grid>
