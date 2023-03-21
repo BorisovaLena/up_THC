@@ -49,6 +49,8 @@ namespace THC.pages
             cmbSearchStreet.SelectedIndex = 0;
 
             dgSubscribers.ItemsSource = clasess.ClassBase.Base.TableClient.ToList();
+            
+            Filter();
         }
 
         private void cmbSearchDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)

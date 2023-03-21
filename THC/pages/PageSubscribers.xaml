@@ -49,7 +49,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <CheckBox Name="cbActive" Content="Активные" Grid.Column="0" VerticalAlignment="Center" Margin="5" FontSize="18" Click="cbActive_Checked"/>
+            <CheckBox Name="cbActive" Content="Активные" Grid.Column="0" VerticalAlignment="Center" Margin="5" FontSize="18" Click="cbActive_Checked" IsChecked="True"/>
             <CheckBox Name="cbNotActive" Content="Неактивные" Grid.Column="1" VerticalAlignment="Center" Margin="5" FontSize="18" Click="cbActive_Checked"/>
         </StackPanel>
         

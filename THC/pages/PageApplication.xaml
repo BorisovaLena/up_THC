@@ -16,8 +16,8 @@
             <GroupBox Header="Введите фамилию">
                 <TextBox Name="tbSurname"/>
             </GroupBox>
-            <Button Name="btnEnter" Content="Ввести" Click="btnEnter_Click"/>
-            <Button Name="btnAddApplication" Content="Создать заявку" Visibility="Collapsed" Click="btnAddApplication_Click"/>
+            <Button Name="btnEnter" Content="Ввести" Click="btnEnter_Click" Background="#B5DEFA" Margin="5"/>
+            <Button Name="btnAddApplication" Content="Создать заявку" Visibility="Collapsed" Click="btnAddApplication_Click" Background="#B5DEFA" Margin="5"/>
         </StackPanel>
 
 

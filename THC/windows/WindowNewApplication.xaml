@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:THC.windows"
         mc:Ignorable="d"
         Icon="/pictures/image.ico"
-        MinHeight="500" MinWidth="850"
-        Title="Заявка" Height="500" Width="850">
+        MinHeight="550" MinWidth="900"
+        Title="Заявка" Height="550" Width="900">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="6*"/>
-            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
@@ -116,8 +116,8 @@
             </Grid>
         </Grid>
         <StackPanel Grid.Row="2">
-            <Button Name="btnsave" Content="Сохранить" Click="btnsave_Click"/>
-            <Button Name="btnTest" Content="Протестировать" Click="btnTest_Click"/>
+            <Button Name="btnsave" Content="Сохранить" Click="btnsave_Click" Background="#B5DEFA" Width="500" Margin="10"/>
+            <Button Name="btnTest" Content="Протестировать" Click="btnTest_Click" Background="#B5DEFA" Width="500"/>
         </StackPanel>
     </Grid>
 </Window>
