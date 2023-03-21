@@ -32,11 +32,11 @@ namespace THC.pages
             }
             cmbSearchDistrict.SelectedIndex = 0;
 
-            List<TableAddress> addresses = clasess.ClassBase.Base.TableAddress.ToList(); //заполнение comboBox с улицами
             cmbSearchStreet.Items.Add("нет");
+            List<TableAddress> addresses = clasess.ClassBase.Base.TableAddress.ToList();
             foreach (TableAddress addres in addresses)
             {
-                if(addres.AddressHouse!=null)
+                if (addres.AddressHouse != null)
                 {
                     cmbSearchStreet.Items.Add(addres.TableStreet.StreetName + ", " + addres.AddressHouse);
                 }
@@ -44,7 +44,6 @@ namespace THC.pages
                 {
                     cmbSearchStreet.Items.Add(addres.TableStreet.StreetName);
                 }
-                
             }
             cmbSearchStreet.SelectedIndex = 0;
 
@@ -55,7 +54,43 @@ namespace THC.pages
 
         private void cmbSearchDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Filter();
+            if(cmbSearchDistrict.SelectedIndex != 0)
+            {
+                cmbSearchStreet.Items.Clear();
+                List<TableAddress> addresses = clasess.ClassBase.Base.TableAddress.Where(z => z.TableDistrict.DistrictName == cmbSearchDistrict.SelectedValue.ToString()).ToList();
+                cmbSearchStreet.Items.Add("Выберите улицу");
+                cmbSearchStreet.SelectedIndex = 0;
+                foreach (TableAddress addres in addresses)
+                {
+                    if (addres.AddressHouse != null)
+                    {
+                        cmbSearchStreet.Items.Add(addres.TableStreet.StreetName + ", " + addres.AddressHouse);
+                    }
+                    else
+                    {
+                        cmbSearchStreet.Items.Add(addres.TableStreet.StreetName);
+                    }
+                }
+                Filter();
+            }
+            else
+            {
+                cmbSearchStreet.Items.Clear();
+                cmbSearchStreet.Items.Add("нет");
+                List<TableAddress> addresses = clasess.ClassBase.Base.TableAddress.ToList();
+                foreach (TableAddress addres in addresses)
+                {
+                    if (addres.AddressHouse != null)
+                    {
+                        cmbSearchStreet.Items.Add(addres.TableStreet.StreetName + ", " + addres.AddressHouse);
+                    }
+                    else
+                    {
+                        cmbSearchStreet.Items.Add(addres.TableStreet.StreetName);
+                    }
+                }
+                cmbSearchStreet.SelectedIndex = 0;
+            }
         }
 
         private void tbSearchSurname_TextChanged(object sender, TextChangedEventArgs e)
@@ -118,6 +153,11 @@ namespace THC.pages
             {
                 clasess.ClassFrame.mainFrame.Navigate(new pages.PageClient(client));
             }  
+        }
+
+        private void cmbSearchStreet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }

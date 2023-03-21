@@ -28,7 +28,7 @@
                 <ComboBox Name="cmbSearchDistrict" SelectionChanged="cmbSearchDistrict_SelectionChanged"/>
             </GroupBox>
             <GroupBox Grid.Column="2" Header="Выберите улицу">
-                <ComboBox Name="cmbSearchStreet" SelectionChanged="cmbSearchDistrict_SelectionChanged"/>
+                <ComboBox Name="cmbSearchStreet" SelectionChanged="cmbSearchStreet_SelectionChanged"/>
             </GroupBox>
             <GroupBox Grid.Column="3" Header="Введите лицевой счет">
                 <TextBox Name="tbSearchLCh" TextChanged="tbSearchSurname_TextChanged"/>
