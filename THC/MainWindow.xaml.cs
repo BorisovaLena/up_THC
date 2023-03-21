@@ -54,7 +54,8 @@ namespace THC
             spCRM.Visibility = Visibility.Collapsed;
             spPP.Visibility = Visibility.Collapsed;
             spUO.Visibility = Visibility.Collapsed;
-            if(cmbUsers.SelectedIndex != 0)
+            spCRM.Background = Brushes.White;
+            if (cmbUsers.SelectedIndex != 0)
             {
                 TableUser user = clasess.ClassBase.Base.TableUser.FirstOrDefault(x => x.UserID == cmbUsers.SelectedIndex);
                 clasess.ClassFrame.mainFrame.Navigate(new pages.PageSubscribers());
